@@ -1,5 +1,14 @@
 import AddPlayerForm from "../components/AddPlayerForm";
 
+let apiUrl = "http://localhost:7000";
+
+if (process.env.NODE_ENV === 'production') {
+    console.log("It's production!")
+    apiUrl = "https://softball-register-server.herokuapp.com/";
+} else {
+    console.log("It's dev!", process.env.NODE_ENV)
+}
+
 function NewPlayerPage() {
     // add async to be able to switch the page on the right timing after registration
     async function addPlayerHandler(playerData) {
@@ -9,7 +18,7 @@ function NewPlayerPage() {
         // add 'ok' result on index.js on server
         try {
             const fetchResult = await fetch(
-                'https://softball-register-server.herokuapp.com/player/registration',
+                `${apiUrl}/player/registration`,
                 // most API requires POST method to store data
                 {
                     // GET is default
