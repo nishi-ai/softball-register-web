@@ -9,7 +9,7 @@ function NewPlayerPage() {
         // add 'ok' result on index.js on server
         try {
             const fetchResult = await fetch(
-                'http://localhost:7000/player/registration',
+                'https://softball-register-server.herokuapp.com/player/registration',
                 // most API requires POST method to store data
                 {
                     // GET is default
