@@ -4,7 +4,7 @@ let apiUrl = "http://localhost:7000";
 
 if (process.env.NODE_ENV === 'production') {
     console.log("It's production!")
-    apiUrl = "https://softball-register-server.herokuapp.com/";
+    apiUrl = "https://softball-register-server.herokuapp.com";
 } else {
     console.log("It's dev!", process.env.NODE_ENV)
 }
