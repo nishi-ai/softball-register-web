@@ -12,7 +12,6 @@ if (process.env.NODE_ENV === 'production') {
 function NewPlayerPage() {
     // add async to be able to switch the page on the right timing after registration
     async function addPlayerHandler(playerData) {
-
         console.log("------", playerData)
         // send HTTP request to fetched URL, where you want to send
         // sendting data with post request should wait until all HTML pages will be exceuted
