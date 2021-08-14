@@ -12,6 +12,7 @@ if (process.env.NODE_ENV === 'production') {
 function NewPlayerPage() {
     // add async to be able to switch the page on the right timing after registration
     async function addPlayerHandler(playerData) {
+
         console.log("------", playerData)
         // send HTTP request to fetched URL, where you want to send
         // sendting data with post request should wait until all HTML pages will be exceuted
@@ -37,10 +38,11 @@ function NewPlayerPage() {
             // console loged data
             console.log('response json',response);
             if (fetchResult.status === 200) {
-                window.location = "/registered"
+                // window.location = "/registered"
                 console.log('successful registered');
             } else {
                 // payload was not valid or something
+                // put error message when name or email is missing
                 alert('Check your name or email again');
             }        
         } catch (error) {
