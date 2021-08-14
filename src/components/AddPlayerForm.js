@@ -9,10 +9,10 @@ function AddPlayerForm(props) {
 
     // disable button in case there's an http request running
     // use the useEffect hook to set a state defalt: false
-    const [ loading , setLoading ] = useState(false);
+    
 
     const submitHandler = (event) => {
-        setLoading(true);
+        // setLoading(true);
         // prevent the browser default to allow to fully handle the submission
         event.preventDefault();
         
@@ -24,15 +24,8 @@ function AddPlayerForm(props) {
             name: enteredName,
             email: enteredEmail
         };
-
-        setTimeout(
-            async () => {
-                // console.log('playerData', playerData);
-                // forward the data to a parent component, where this AddPlayerForm Component is used
-                await props.onAddPlayer(playerData) 
-                    setLoading(false);
-            }, 2000);
-        
+   
+        props.onAddPlayer(playerData) 
     }
 
         return (
@@ -47,8 +40,8 @@ function AddPlayerForm(props) {
                     <Form.Control type="email" placeholder="name@example.com" ref={emailInputRef} />
                 </Form.Group>
                 
-                <Button variant="outline-primary" type="submit" disabled={loading}>
-                {loading && (
+                <Button variant="outline-primary" type="submit" disabled={props.callLoading}>
+                {props.callLoading && (
                     <Spinner
                     as="span"
                     animation="border"
