@@ -1,11 +1,15 @@
 import { React } from 'react';
 // directly access to reference cue DOM elements
 import { useRef } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Spinner } from 'react-bootstrap';
 
 function AddPlayerForm(props) {
     const nameInputRef = useRef();
     const emailInputRef = useRef();
+
+    // disable button in case there's an http request running
+    // use the useEffect hook to set a state defalt: false
+    
 
     const submitHandler = (event) => {
         // prevent the browser default to allow to fully handle the submission
@@ -19,11 +23,10 @@ function AddPlayerForm(props) {
             name: enteredName,
             email: enteredEmail
         };
-    
-        // console.log('playerData', playerData);
-        // forward the data to a parent component, where this AddPlayerForm Component is used
-        props.onAddPlayer(playerData);
+   
+        props.onAddPlayer(playerData) 
     }
+
         return (
             <Form onSubmit={submitHandler}>
                 
@@ -36,8 +39,18 @@ function AddPlayerForm(props) {
                     <Form.Control type="email" placeholder="name@example.com" ref={emailInputRef} />
                 </Form.Group>
                 
-                <Button variant="outline-primary" type="submit">Register</Button>{' '}
-                
+                <Button variant="outline-primary" type="submit" disabled={props.callLoading}>
+                {props.callLoading && (
+                    <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    />
+                )}
+                <span>Register</span>
+                </Button>{' '}
             </Form>
         );
 }

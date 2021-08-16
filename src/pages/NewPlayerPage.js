@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import AddPlayerForm from "../components/AddPlayerForm";
 
 let apiUrl = "http://localhost:7000";
@@ -10,9 +12,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 function NewPlayerPage() {
+    const [ callLoading , setCallLoading ] = useState(false);
+
     // add async to be able to switch the page on the right timing after registration
     async function addPlayerHandler(playerData) {
         console.log("------", playerData)
+        setCallLoading(true)
         // send HTTP request to fetched URL, where you want to send
         // sendting data with post request should wait until all HTML pages will be exceuted
         // add 'ok' result on index.js on server
@@ -41,18 +46,23 @@ function NewPlayerPage() {
                 console.log('successful registered');
             } else {
                 // payload was not valid or something
+                // put error message when name or email is missing
                 alert('Check your name or email again');
             }        
         } catch (error) {
             // The usage of fetch was something wrong OR json data from server was invalid
             alert('Ups! Something went wrong! Ask Bright!');
         }
+        setCallLoading(false);
     }
     return (
         <section>
             <h1>Softball</h1>
             {/* pass addPlayerHandler without () just pointing at a value to onAddPlayer */}
-            <AddPlayerForm onAddPlayer={addPlayerHandler}/>
+            <AddPlayerForm
+                // export functions to allow to use in a child component 
+                callLoading={callLoading}
+                onAddPlayer={addPlayerHandler}/>
         </section>
     )
 }
