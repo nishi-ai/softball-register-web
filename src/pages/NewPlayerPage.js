@@ -42,7 +42,7 @@ function NewPlayerPage() {
             // console loged data
             console.log('response json',response);
             if (fetchResult.status === 200) {
-                // window.location = "/registered"
+                window.location = "/registered"
                 console.log('successful registered');
             } else {
                 // payload was not valid or something
@@ -59,7 +59,8 @@ function NewPlayerPage() {
         <section>
             <h1>Softball</h1>
             {/* pass addPlayerHandler without () just pointing at a value to onAddPlayer */}
-            <AddPlayerForm 
+            <AddPlayerForm
+                // export functions to allow to use in a child component 
                 callLoading={callLoading}
                 onAddPlayer={addPlayerHandler}/>
         </section>

@@ -1,6 +1,6 @@
 import { React } from 'react';
 // directly access to reference cue DOM elements
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Form, Button, Spinner } from 'react-bootstrap';
 
 function AddPlayerForm(props) {
@@ -12,7 +12,6 @@ function AddPlayerForm(props) {
     
 
     const submitHandler = (event) => {
-        // setLoading(true);
         // prevent the browser default to allow to fully handle the submission
         event.preventDefault();
         
