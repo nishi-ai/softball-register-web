@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 // check name and emai are valid or not
 const useInput = (validateValue) => {
@@ -13,8 +13,10 @@ const useInput = (validateValue) => {
     // once submitted clicked, all inputs are treated as touched, whatever they are valid or not
     const hasError = !valueIsValid && isTouched;
 
+    const inputRef = useRef()
+
     const valueChangeHandler = (e) => {
-        setEnteredValue(e.target.value);
+        setEnteredValue(inputRef.current.value);
     }
 
     // prevent input from losing and show errors at every editting
@@ -25,7 +27,6 @@ const useInput = (validateValue) => {
 
     // reset the touched state to false once submitted
     const reset = () => {
-        setEnteredValue('');
         setIsTouched(false)
     }
 
@@ -34,6 +35,7 @@ const useInput = (validateValue) => {
         value: enteredValue,
         isValid: valueIsValid,
         hasError,
+        ref: inputRef,
         valueChangeHandler,
         inputBlurHanlder,
         reset

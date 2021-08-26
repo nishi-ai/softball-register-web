@@ -10,26 +10,24 @@ function AddPlayerForm(props) {
         value: enteredName,
         isValid: enteredNameIsValid,
         hasError: nameInputHasError,
+        ref: inputName,
         valueChangeHandler: nameChangeHandler,
         inputBlurHanlder: nameBlurHanlder,
-        reset: resetNameInput
+        reset: resetTouchedNameField
     } = useInput(value => value.trim() !== '' && value.length >= 2);
 
     const {
         value: enteredEmail,
         isValid: enteredEmailIsValid,
         hasError: EmailInputHasError,
+        ref: inputEmail,
         valueChangeHandler: emailChangeHandler,
         inputBlurHanlder: emailBlurHanlder,
-        reset: resetEmailInput
+        reset: resetTouchedEmailField
     } = useInput(value => value.includes('@'));
 
     // to manage overall form validity
-    let formIsValid = false;
-
-    if (enteredNameIsValid && enteredEmailIsValid) {
-        formIsValid = true;
-    }
+    const formIsValid = enteredNameIsValid && enteredEmailIsValid 
 
     const submitHandler = (event) => {
         // prevent the browser default of senfing a request,  to allow to fully handle the submission
@@ -56,8 +54,8 @@ function AddPlayerForm(props) {
         props.onAddPlayer(playerData);
 
         // reset states
-        resetNameInput();
-        resetEmailInput();
+        resetTouchedNameField();
+        resetTouchedEmailField();
     };
 
         return (
@@ -71,10 +69,11 @@ function AddPlayerForm(props) {
                         onChange={nameChangeHandler}
                         onBlur={nameBlurHanlder}
                         value={enteredName}
+                        ref={inputName}
                     />
                     {(props.showNameErrorMessage || nameInputHasError) && (
                      <p className='error-text'>
-                         More than 2 letters required
+                         Please enter at least 2 chars
                     </p>
                     )}
                 </Form.Group>
@@ -88,6 +87,7 @@ function AddPlayerForm(props) {
                         onChange={emailChangeHandler}
                         onBlur={emailBlurHanlder}
                         value={enteredEmail}
+                        ref={inputEmail}
                     />
                     {(props.showEmailErrorMessage || EmailInputHasError) && (
                      <p className='error-text'>Please enter a valid email with @.</p>
