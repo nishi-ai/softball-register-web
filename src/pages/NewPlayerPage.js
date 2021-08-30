@@ -74,8 +74,7 @@ function NewPlayerPage() {
         setCallLoading(false);
     }
     return (
-        <section>
-            <h1>Softball</h1>
+        <section id="form">
             {/* pass addPlayerHandler without () just pointing at a value to onAddPlayer */}
             <AddPlayerForm
                 // export functions to allow to use in a child component 

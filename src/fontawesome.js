@@ -10,11 +10,14 @@ import {
   faCopy,
   faLink,
   faClipboardCheck,
-  faLeaf
+  faLeaf,
+  faLocationArrow,
+  faCoffee
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faGithubAlt,
   faLinkedin,
+  fab
 } from '@fortawesome/free-brands-svg-icons';
 
 // and import into index.js!
@@ -28,5 +31,8 @@ library.add(
   faCopy,
   faLink,
   faClipboardCheck,
-  faLeaf
+  faLeaf,
+  faLocationArrow,
+  fab,
+  faCoffee
 );

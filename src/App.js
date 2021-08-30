@@ -4,7 +4,9 @@ import { Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Registered from './components/Registered';
 import NewPlayerPage from './pages/NewPlayerPage';
+import DisplayBasicInfo from "./components/BasicInfo";
 
+const data = require('./BasicData.json')
 
 //files for understanding components, state and props
 class App extends Component {
@@ -14,6 +16,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <header className="App-header">
+          <DisplayBasicInfo data={data.main} />
             <Route path='/' exact>
               <NewPlayerPage />
             </Route>
