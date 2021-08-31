@@ -52,6 +52,7 @@ function DisplayBasicInfo (props) {
                     />
                 </Carousel.Item>
                 </Carousel>
+            <p>{registerationExplanation}</p>
             </div>
         </section>
     );
