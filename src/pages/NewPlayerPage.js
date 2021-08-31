@@ -49,7 +49,7 @@ function NewPlayerPage() {
             console.log('response json',response);
 
             if (fetchResult.status === 200) {
-                // window.location = "/registered"
+                window.location = "/registered"
                 console.log('successful registered');
             } 
             // payload was not valid or something
