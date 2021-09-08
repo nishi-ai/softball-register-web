@@ -1,0 +1,15 @@
+{
+  "main": {
+    "teamName": "Cats and Dogs Softball Berlin",
+    "discription": "Easy sport, absolute beginners can enjoy it 🥎 Enough gloves and a bat for everyone to use. Bring your friends and family.",
+    "registeration": "We will send you an invitation to the upcoming games.",
+    "images": [
+      "soft1.jpeg",
+      "soft2.jpeg",
+      "soft3.jpeg",
+      "softball.jpeg"
+    ],
+    "location": "Tempelhofer Feld, Tempelhofer Damm, 12101 Berlin",
+    "city": "Berlin"
+  }
+}
