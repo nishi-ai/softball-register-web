@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 import AddPlayerForm from "../components/AddPlayerForm";
 
-let apiUrl = "http://localhost:7000";
+const config = require('config');
+
+let apiUrl = config.get('apiUrl');
 
 if (process.env.NODE_ENV === 'production') {
     console.log("It's production!")
