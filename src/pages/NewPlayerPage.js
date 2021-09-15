@@ -2,16 +2,7 @@ import { useState } from 'react';
 
 import AddPlayerForm from "../components/AddPlayerForm";
 
-const config = require('config');
-
-let apiUrl = config.get('apiUrl');
-
-if (process.env.NODE_ENV === 'production') {
-    console.log("It's production!")
-    apiUrl = "https://softball-register-server.herokuapp.com";
-} else {
-    console.log("It's dev!", process.env.NODE_ENV)
-}
+const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_SERVER_URL : process.env.REACT_APP_DEV_API_URL
 
 function NewPlayerPage() {
     const [ callLoading , setCallLoading ] = useState(false);
