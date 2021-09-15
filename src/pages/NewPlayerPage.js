@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import AddPlayerForm from "../components/AddPlayerForm";
 
-const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_SERVER_URL : process.env.REACT_APP_DEV_API_URL
+const apiUrl = process.env.REACT_APP_SERVER_URL
 
 function NewPlayerPage() {
     const [ callLoading , setCallLoading ] = useState(false);
