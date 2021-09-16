@@ -61,7 +61,8 @@ function NewPlayerPage() {
             }
         } catch (error) {
             // The usage of fetch was something wrong OR json data from server was invalid
-            alert('Ups! Something went wrong! Ask Bright!');
+            // alert('Ups! Something went wrong! Ask Bright!');
+            window.location = "/500"
         }
         // disable button in case there's an http request running
         setCallLoading(false);
