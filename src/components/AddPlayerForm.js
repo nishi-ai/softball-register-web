@@ -27,7 +27,10 @@ function AddPlayerForm(props) {
     } = useInput(value => value.includes('@'));
 
     // to manage overall form validity
-    const formIsValid = enteredNameIsValid && enteredEmailIsValid 
+    const formIsValid = enteredNameIsValid && enteredEmailIsValid
+    
+    // to manage dupli email input
+    const dupliEmailEntered = props.showDupliEmailErrorMessage
 
     const submitHandler = (event) => {
         // prevent the browser default of senfing a request,  to allow to fully handle the submission
@@ -36,14 +39,6 @@ function AddPlayerForm(props) {
         if (!formIsValid) {
             return;
         }
-
-        // if enteredNameIsValid is valid, just return and stop here
-        // if (props.showNameErrorMessage) {
-        //     console.log('showNameErrorMessage true', props.showNameErrorMessage)
-        //     // return;
-        // } else {
-        //     console.log('showNameErrorMessage false', props.showNameErrorMessage)
-        // }
              
         // Rest API to send server & DB
         const playerData = {
@@ -91,6 +86,9 @@ function AddPlayerForm(props) {
                     />
                     {(props.showEmailErrorMessage || EmailInputHasError) && (
                      <p className='error-text'>Please enter a valid email with @.</p>
+                    )}
+                     {(dupliEmailEntered) && (
+                    <p className='error-text'>This email is already taken.</p>
                     )}
                 </Form.Group>
                 
