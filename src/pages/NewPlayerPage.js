@@ -6,9 +6,9 @@ const apiUrl = process.env.REACT_APP_SERVER_URL
 
 function NewPlayerPage() {
     const [ callLoading , setCallLoading ] = useState(false);
-    // const [ invalidValue, setInvalidValue] = useState('')
     const [ showNameErrorMessage, setShowNameErrorMessage ] = useState(false)
     const [ showEmailErrorMessage, setShowEmailErrorMessage ] = useState(false)
+    const [ showDupliEmailErrorMessage, setShowDupliEmailErrorMessage ] = useState(false)
    
     // add async to be able to switch the page on the right timing after registration
     async function addPlayerHandler(playerData) {
@@ -44,11 +44,15 @@ function NewPlayerPage() {
             if (fetchResult.status === 200) {
                 window.location = "/registered"
                 console.log('successful registered');
-            } 
+            }
+            if (fetchResult.status === 409) {
+                console.log('----  email is already taken');
+                setShowDupliEmailErrorMessage(true);
+            }
             // payload was not valid or something
             // put error message when name or email is missing
             else if (response.validationErrors.length >= 2) {
-                console.log('----  name and email both are invalid')
+            console.log('----  name and email both are invalid')
                 setShowNameErrorMessage(true)
                 setShowEmailErrorMessage(true)     
             } else if (response.validationErrors[0].param === 'name') {
@@ -61,7 +65,6 @@ function NewPlayerPage() {
             }
         } catch (error) {
             // The usage of fetch was something wrong OR json data from server was invalid
-            // alert('Ups! Something went wrong! Ask Bright!');
             window.location = "/500"
         }
         // disable button in case there's an http request running
@@ -76,6 +79,7 @@ function NewPlayerPage() {
                 onAddPlayer={addPlayerHandler}
                 showNameErrorMessage={showNameErrorMessage}
                 showEmailErrorMessage={showEmailErrorMessage}
+                showDupliEmailErrorMessage={showDupliEmailErrorMessage}
                 />
         </section>
     )
