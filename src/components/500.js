@@ -5,7 +5,7 @@ class Error500 extends Component {
 
     return (
       <div id='error'>
-        <h1>Some error occurred!</h1>
+        <h1>Ups, Something went wrong!</h1>
         <p>We're working on fixing this, sorry for the inconvenience!</p>
       </div>
     )
