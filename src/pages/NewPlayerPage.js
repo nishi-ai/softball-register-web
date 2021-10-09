@@ -51,21 +51,23 @@ function NewPlayerPage() {
             }
             // payload was not valid or something
             // put error message when name or email is missing
-            else if (response.validationErrors.length >= 2) {
-            console.log('----  name and email both are invalid')
-                setShowNameErrorMessage(true)
-                setShowEmailErrorMessage(true)     
-            } else if (response.validationErrors[0].param === 'name') {
-                console.log('----  name is invalid');
-                setShowNameErrorMessage(true)
-               
-            } else if (response.validationErrors[0].param === 'email') {
-                console.log('----  email is invalid');
-                setShowEmailErrorMessage(true)
+            else if (response.validationErrors != null) {
+                if (response.validationErrors.length >= 2) {
+                    console.log('----  name and email both are invalid')
+                    setShowNameErrorMessage(true)
+                    setShowEmailErrorMessage(true)     
+                } else if (response.validationErrors[0].param === 'name') {
+                    console.log('----  name is invalid');
+                    setShowNameErrorMessage(true)   
+                } else if (response.validationErrors[0].param === 'email') {
+                    console.log('----  email is invalid');
+                    setShowEmailErrorMessage(true)
+                }
             }
         } catch (error) {
             // The usage of fetch was something wrong OR json data from server was invalid
             window.location = "/500"
+            console.log('error here:', error)
         }
         // disable button in case there's an http request running
         setCallLoading(false);
