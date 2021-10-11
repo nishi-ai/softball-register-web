@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Registered from './components/Registered';
 import Error500 from './components/500';
 import NewPlayerPage from './pages/NewPlayerPage';
+import AdminPage from './pages/AdminPage';
 import DisplayBasicInfo from "./components/BasicInfo";
 
 const data = require('./BasicData.json')
@@ -18,8 +19,8 @@ class App extends Component {
         <div className="App">
         <Switch>
           <header className="App-header">
-          <DisplayBasicInfo data={data.main} />
             <Route path='/' exact>
+              <DisplayBasicInfo data={data.main} />
               <NewPlayerPage />
             </Route>
             <Route path='/registered'>
@@ -28,9 +29,10 @@ class App extends Component {
             <Route path='/500'>
               <Error500/>
             </Route>
+            <Route path='/admin/players/:password' component={AdminPage}/>
           </header>
         </Switch>
-      </div>
+        </div>
       </Router>
       
     );
