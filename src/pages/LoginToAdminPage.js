@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import PasswordForm from '../components/PasswordForm'
 import AdminPage from './AdminPage';
@@ -11,7 +11,7 @@ function LoginToAdminPage() {
     const [ showPasswordErrorMessage, setShowPasswordErrorMessage ] = useState(false)
     const [ playersList, setPlayersList ] = useState([]);
     
-    const getPasswordHandler = async (passwordObject) => {
+    const getPlayersDataHandler = async (passwordObject) => {
         const adminPassword = passwordObject.password
 
         setCallLoading(true);
@@ -23,10 +23,7 @@ function LoginToAdminPage() {
             const responseData = await result.json();
 
             if (result.status === 200) {
-                const component = (
-                    <AdminPage playersList={responseData}/>
-                )
-                setPlayersList(component);
+                setPlayersList(responseData);
                 setAuthorized(true);
             };
             if (result.status === 403) {
@@ -43,10 +40,12 @@ function LoginToAdminPage() {
     <section id="form">
         {!authorized && <PasswordForm
             callLoading={callLoading}
-            getPasswordHandler={getPasswordHandler}
+            getPlayersDataHandler={getPlayersDataHandler}
             showPasswordErrorMessage={showPasswordErrorMessage}
         />}
-        {authorized && playersList}
+        {(authorized && playersList) && (
+            <AdminPage playersList={playersList}/>
+        )}
     </section>
     )
 }
