@@ -36,7 +36,7 @@ function PasswordForm(props) {
     };
 
         return (
-            <Form noValidate onSubmit={submitHandler} validated={!props.showPasswordErrorMessage}>
+            <Form noValidate onSubmit={submitHandler} validated={formIsValid}>
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor='playername'>Password</Form.Label>
                     <Form.Control
