@@ -1,16 +1,26 @@
 import React from 'react';
-import GetAllPlayers from '../components/GetAllPlayers'
 
-function AdminPage() {
-    const password = this.props.match.params.password
-    const allPlayers = GetAllPlayers(password)
-    console.log(allPlayers);
+function AdminPage (props) { 
+    
+    const players = props.playersList
+    console.log('AdminPage', players)
 
     return (
-      <div id='registered'>
-        <h1>here is admin page!</h1>
-        <div>{allPlayers}</div>
-      </div>
+        <div id='#adminpage'>
+            <h1>All players:</h1>
+            <div className="row">
+                <div className="column">
+                    {players.map((player) => (
+                    <div key={player.id}>{player.name}</div>
+                    ))}
+                </div>
+                <div className="column">
+                    {players.map((player) => (
+                    <div key={player.id}>{player.email}</div>
+                    ))}
+                </div>
+            </div>
+        </div>
     )
   }
 
