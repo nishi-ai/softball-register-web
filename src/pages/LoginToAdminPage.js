@@ -32,6 +32,7 @@ function LoginToAdminPage() {
             
         } catch (error) {
             console.log(error);
+            window.location = "/500"
         };
         setCallLoading(false);
     }
