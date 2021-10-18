@@ -29,7 +29,7 @@ class App extends Component {
             <Route path='/500'>
               <Error500/>
             </Route>
-            <Route path='/admin/players'>
+            <Route path='/admin'>
               <LoginToAdminPage/>
             </Route>
           </header>
