@@ -10,9 +10,11 @@ function LoginToAdminPage() {
     const [ callLoading , setCallLoading ] = useState(false);
     const [ showPasswordErrorMessage, setShowPasswordErrorMessage ] = useState(false)
     const [ playersList, setPlayersList ] = useState([]);
+    const [ password, setPassword ] = useState('');
     
-    const getPlayersDataHandler = async (passwordObject) => {
-        const adminPassword = passwordObject.password
+    const getPlayersDataHandler = async (password) => {
+        const adminPassword = password
+        setPassword(adminPassword)
 
         setCallLoading(true);
         setShowPasswordErrorMessage(false);
@@ -20,7 +22,13 @@ function LoginToAdminPage() {
             const result = await fetch(
                 `${apiUrl}/admin/players/?password=${adminPassword}`,
             );
-            const responseData = await result.json();
+            let responseData = await result.json();
+            responseData = responseData.map(item => {
+                return {
+                    ...item,
+                    selected: false
+                };
+            })
 
             if (result.status === 200) {
                 setPlayersList(responseData);
@@ -45,7 +53,10 @@ function LoginToAdminPage() {
             showPasswordErrorMessage={showPasswordErrorMessage}
         />}
         {(authorized && playersList) && (
-            <AdminPage playersList={playersList}/>
+            <AdminPage
+                playersList={playersList}
+                password={password}
+                getPlayersDataHandler={getPlayersDataHandler} />
         )}
     </section>
     )

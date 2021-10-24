@@ -30,7 +30,7 @@ function PasswordForm(props) {
             password: enteredPassword
         };
         console.log(passwordObject.password)
-        props.getPlayersDataHandler(passwordObject);
+        props.getPlayersDataHandler(passwordObject.password);
         // reset states
         resetTouchedPasswordField();
     };
