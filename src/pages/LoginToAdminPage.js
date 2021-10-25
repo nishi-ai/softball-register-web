@@ -11,6 +11,18 @@ function LoginToAdminPage() {
     const [ showPasswordErrorMessage, setShowPasswordErrorMessage ] = useState(false)
     const [ playersList, setPlayersList ] = useState([]);
     const [ password, setPassword ] = useState('');
+
+
+    // create selected players list
+    const setPlayerSelected = (index, isSelected) => {
+        const tempArray = playersList.map(player => {
+            return {
+                ...player,
+            }
+        });
+        tempArray[index].selected = isSelected;
+        setPlayersList(tempArray);
+    }
     
     const getPlayersDataHandler = async (password) => {
         const adminPassword = password
@@ -29,16 +41,6 @@ function LoginToAdminPage() {
                     selected: false
                 };
             })
-
-            const getselectedList = (e, item, responseData) => {
-                responseData.map((player) => {
-                    if (player._id === item._id) {
-                        player.selected = e.target.checked;
-                    }
-                    return player
-                });
-            setPlayersList(responseData)
-            }
 
             if (result.status === 200) {
                 setPlayersList(responseData);
@@ -67,7 +69,7 @@ function LoginToAdminPage() {
                 playersList={playersList}
                 password={password}
                 getPlayersDataHandler={getPlayersDataHandler}
-                getselectedList={getselectedList} />
+                setPlayerSelected={setPlayerSelected} />
         )}
     </section>
     )
