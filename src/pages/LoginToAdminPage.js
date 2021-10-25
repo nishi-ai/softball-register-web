@@ -30,6 +30,16 @@ function LoginToAdminPage() {
                 };
             })
 
+            const getselectedList = (e, item, responseData) => {
+                responseData.map((player) => {
+                    if (player._id === item._id) {
+                        player.selected = e.target.checked;
+                    }
+                    return player
+                });
+            setPlayersList(responseData)
+            }
+
             if (result.status === 200) {
                 setPlayersList(responseData);
                 setAuthorized(true);
@@ -56,7 +66,8 @@ function LoginToAdminPage() {
             <AdminPage
                 playersList={playersList}
                 password={password}
-                getPlayersDataHandler={getPlayersDataHandler} />
+                getPlayersDataHandler={getPlayersDataHandler}
+                getselectedList={getselectedList} />
         )}
     </section>
     )

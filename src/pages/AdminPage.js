@@ -6,14 +6,15 @@ function AdminPage (props) {
     const players = props.playersList
     console.log('AdminPage', players)
     const [ masterChecked, setMasterChecked ] = useState(false)
-    const [ selectedList, setSelectedList ] = useState([]);
+    // const [ selectedList, setSelectedList ] = useState([]);
+    const [ randomNum, setRandomNum ] = useState(0);
 
     // select all
     const onMasterCheck = (e) => {
         let tempList = players
         tempList.map((player) => ( player.selected = e.target.checked));
         setMasterChecked(e.target.checked);
-        setSelectedList(players.filter((e) => e.selected))
+        // setSelectedList(players.filter((e) => e.selected))
     }
 
     // select items
@@ -32,14 +33,15 @@ function AdminPage (props) {
 
         setMasterChecked(totalItems === totalCheckedItems);
         // console.log('setSelectedList1', players.filter((e) => e.selected))
-        setSelectedList(players.filter((e) => e.selected))
+        // setSelectedList(players.filter((e) => e.selected))
+        setRandomNum(Math.random())
     }
 
     const getSelectedRows = async () => {
         // extract only emails from selected items
         const emailsArray = players.flatMap((e) => e.selected ? [e.email] : [])
         // console.log('emailsArray', emailsArray)
-        setSelectedList(emailsArray)
+        // setSelectedList(emailsArray)
         // console.log('setSelectedList2', emailsArray);
         const adminPassword = props.password
 
@@ -58,7 +60,7 @@ function AdminPage (props) {
                 // console.log('successful deleted');
                 props.getPlayersDataHandler(adminPassword)
                 // console.log('setSelectedList3');
-                setSelectedList([])
+                // setSelectedList([])
             }
         } catch (error) {
             // window.location = "/500"
@@ -73,7 +75,7 @@ function AdminPage (props) {
                 <button
                     className="btn btn-primary pull-right"
                     onClick={() => getSelectedRows()}
-                    value={selectedList}
+                    // value={selectedList}
                 >
                     Delete
                 </button>
