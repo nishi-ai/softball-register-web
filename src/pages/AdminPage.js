@@ -6,7 +6,6 @@ function AdminPage (props) {
     const players = props.playersList
     console.log('AdminPage', players)
     const [ masterChecked, setMasterChecked ] = useState(false)
-    // const [ selectedList, setSelectedList ] = useState([]);
     const [ randomNum, setRandomNum ] = useState(0);
 
     // select all
@@ -14,35 +13,18 @@ function AdminPage (props) {
         let tempList = players
         tempList.map((player) => ( player.selected = e.target.checked));
         setMasterChecked(e.target.checked);
-        // setSelectedList(players.filter((e) => e.selected))
+
     }
 
     // select items
-    const onItemCheck = (e, item) => {
-        let tempList = players
-        tempList.map((player) => {
-            if (player._id === item._id) {
-                player.selected = e.target.checked;
-            }
-            return player;
-        });
-
-        // to Control Master Checkbox State
-        const totalItems = players.length;
-        const totalCheckedItems = tempList.filter((e) => e.selected).length;
-
-        setMasterChecked(totalItems === totalCheckedItems);
-        // console.log('setSelectedList1', players.filter((e) => e.selected))
-        // setSelectedList(players.filter((e) => e.selected))
+    const onItemCheck = (e, index) => {
+        props.setPlayerSelected(index, e.target.checked)  
         setRandomNum(Math.random())
     }
 
     const getSelectedRows = async () => {
         // extract only emails from selected items
         const emailsArray = players.flatMap((e) => e.selected ? [e.email] : [])
-        // console.log('emailsArray', emailsArray)
-        // setSelectedList(emailsArray)
-        // console.log('setSelectedList2', emailsArray);
         const adminPassword = props.password
 
         try {
@@ -59,11 +41,9 @@ function AdminPage (props) {
             if (fetchResult.status === 200) {
                 // console.log('successful deleted');
                 props.getPlayersDataHandler(adminPassword)
-                // console.log('setSelectedList3');
-                // setSelectedList([])
             }
         } catch (error) {
-            // window.location = "/500"
+            window.location = "/500"
             console.log('error here:', error)
         }
     }
@@ -89,6 +69,7 @@ function AdminPage (props) {
                                  checked={masterChecked}
                                  id="mastercheck"
                                  onChange={(e) => onMasterCheck(e)}
+                                 value={randomNum}
                                 />
                             </th>
                         <th scope="col">Name</th>
@@ -96,23 +77,25 @@ function AdminPage (props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {players.map(player => (
-                        <tr key={player.id} className={player.selected ? "selected" : ""}>
-                             <th scope="row">
-                                <input
-                                type='checkbox'
-                                checked={player.selected}
-                                className="form-check-input"
-                                id={player.id}
-                                onChange={(e) => onItemCheck(e, player)}
-                            />
-                            </th>
-                            <td>{player.name}</td>
-                            <td>{player.email}</td>
-                        </tr>
-                            ))}
+                        {players.map((player, index) => {
+                            return (
+                            <tr key={player.id} className={player.selected ? "selected" : ""}>
+                                <th scope="row">
+                                    <input
+                                        type='checkbox'
+                                        checked={player.selected}
+                                        className="form-check-input"
+                                        id={player.id}
+                                        onChange={(e) => onItemCheck(e, index)}
+                                        value={randomNum}
+                                    />
+                                </th>
+                                <td>{player.name}</td>
+                                <td>{player.email}</td>
+                            </tr>
+                            )
+                        })}
                     </tbody>
-                    
                     </table>
                 </div>
             </div>
