@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import PasswordForm from '../components/PasswordForm'
-import AdminPage from './AdminPage';
+import PlayerList from './PlayerList';
 
 const apiUrl = process.env.REACT_APP_SERVER_URL
 
@@ -65,7 +65,7 @@ function LoginToAdminPage() {
             showPasswordErrorMessage={showPasswordErrorMessage}
         />}
         {(authorized && playersList) && (
-            <AdminPage
+            <PlayerList
                 playersList={playersList}
                 password={password}
                 getPlayersDataHandler={getPlayersDataHandler}

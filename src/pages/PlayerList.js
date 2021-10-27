@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 
 const apiUrl = process.env.REACT_APP_SERVER_URL
 
-function AdminPage (props) { 
+function PlayerList (props) { 
     const players = props.playersList
     console.log('AdminPage', players)
     const [ masterChecked, setMasterChecked ] = useState(false)
     const [ randomNum, setRandomNum ] = useState(0);
 
     // select all
-    const onMasterCheck = (e) => {
+    const onSelectAll = (e) => {
         let tempList = players
         tempList.map((player) => ( player.selected = e.target.checked));
         setMasterChecked(e.target.checked);
@@ -22,7 +22,7 @@ function AdminPage (props) {
         setRandomNum(Math.random())
     }
 
-    const getSelectedRows = async () => {
+    const getNewPlayerList = async () => {
         // extract only emails from selected items
         const emailsArray = players.flatMap((e) => e.selected ? [e.email] : [])
         const adminPassword = props.password
@@ -54,7 +54,7 @@ function AdminPage (props) {
                 <div className="col-md-12">
                 <button
                     className="btn btn-primary pull-right"
-                    onClick={() => getSelectedRows()}
+                    onClick={() => getNewPlayerList()}
                     // value={selectedList}
                 >
                     Delete
@@ -68,7 +68,7 @@ function AdminPage (props) {
                                  className="form-check-input"
                                  checked={masterChecked}
                                  id="mastercheck"
-                                 onChange={(e) => onMasterCheck(e)}
+                                 onChange={(e) => onSelectAll(e)}
                                  value={randomNum}
                                 />
                             </th>
@@ -105,4 +105,4 @@ function AdminPage (props) {
     );
 }
 
-export default AdminPage;
+export default PlayerList;
