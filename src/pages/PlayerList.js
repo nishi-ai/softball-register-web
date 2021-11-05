@@ -35,6 +35,8 @@ function PlayerList (props) {
             if (fetchResult.status === 200) {
                 // console.log('successful deleted');
                 props.getPlayersDataHandler(adminPassword)
+            } else {
+                alert('It could not be deleted.')
             }
         } catch (error) {
             window.location = "/500"

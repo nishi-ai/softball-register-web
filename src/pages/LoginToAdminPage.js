@@ -12,7 +12,6 @@ function LoginToAdminPage() {
     const [ playersList, setPlayersList ] = useState([]);
     const [ password, setPassword ] = useState('');
 
-
     // create selected players list
     const setPlayerSelected = (index, isSelected) => {
         // create a temporary playerlist to make sure not to changie the original.
@@ -33,7 +32,7 @@ function LoginToAdminPage() {
                 ...player,
             }
         });
-        tempArray.map((player) => ( player.selected = isSelected));
+        tempArray.forEach(player => player.selected = isSelected)
         setPlayersList(tempArray);
     }
     
