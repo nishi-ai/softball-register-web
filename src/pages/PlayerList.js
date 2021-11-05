@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const apiUrl = process.env.REACT_APP_SERVER_URL
 
 function PlayerList (props) { 
     const players = props.playersList
     console.log('AdminPage', players)
-    const [ masterChecked, setMasterChecked ] = useState(false)
-    const [ randomNum, setRandomNum ] = useState(0);
 
     // select all
     const onSelectAll = (e) => {
-        let tempList = players
-        tempList.map((player) => ( player.selected = e.target.checked));
-        setMasterChecked(e.target.checked);
-
+        props.setPlayerSelectedAll(e.target.checked);
     }
 
     // select items
     const onItemCheck = (e, index) => {
         props.setPlayerSelected(index, e.target.checked)  
-        setRandomNum(Math.random())
     }
 
-    const getNewPlayerList = async () => {
-        // extract only emails from selected items
+    const deleteSelectedPlayers = async () => {
+        // extract only emails from selected items, use faltmap
         const emailsArray = players.flatMap((e) => e.selected ? [e.email] : [])
         const adminPassword = props.password
 
@@ -54,8 +48,7 @@ function PlayerList (props) {
                 <div className="col-md-12">
                 <button
                     className="btn btn-primary pull-right"
-                    onClick={() => getNewPlayerList()}
-                    // value={selectedList}
+                    onClick={() => deleteSelectedPlayers()}
                 >
                     Delete
                 </button>
@@ -66,10 +59,8 @@ function PlayerList (props) {
                                 <input
                                  type='checkbox'
                                  className="form-check-input"
-                                 checked={masterChecked}
                                  id="mastercheck"
                                  onChange={(e) => onSelectAll(e)}
-                                 value={randomNum}
                                 />
                             </th>
                         <th scope="col">Name</th>
@@ -86,8 +77,7 @@ function PlayerList (props) {
                                         checked={player.selected}
                                         className="form-check-input"
                                         id={player.id}
-                                        onChange={(e) => onItemCheck(e, index)}
-                                        value={randomNum}
+                                        onChange={(e) => onItemCheck(e, index)}    
                                     />
                                 </th>
                                 <td>{player.name}</td>

@@ -15,12 +15,25 @@ function LoginToAdminPage() {
 
     // create selected players list
     const setPlayerSelected = (index, isSelected) => {
+        // create a temporary playerlist to make sure not to changie the original.
         const tempArray = playersList.map(player => {
             return {
                 ...player,
             }
         });
         tempArray[index].selected = isSelected;
+        // set the only seleced item's isSelected as 'true'
+        setPlayersList(tempArray);
+    }
+
+     // select all
+    const setPlayerSelectedAll = (isSelected) => {
+        const tempArray = playersList.map(player => {
+            return {
+                ...player,
+            }
+        });
+        tempArray.map((player) => ( player.selected = isSelected));
         setPlayersList(tempArray);
     }
     
@@ -69,7 +82,8 @@ function LoginToAdminPage() {
                 playersList={playersList}
                 password={password}
                 getPlayersDataHandler={getPlayersDataHandler}
-                setPlayerSelected={setPlayerSelected} />
+                setPlayerSelected={setPlayerSelected}
+                setPlayerSelectedAll={setPlayerSelectedAll} />
         )}
     </section>
     )
