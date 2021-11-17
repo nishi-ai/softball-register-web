@@ -1,6 +1,6 @@
 import './App.css';
 import React, {Component} from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container as GridContainer, Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Registered from './components/Registered';
@@ -23,13 +23,13 @@ class App extends Component {
         <Switch>
           <header className="App-header">
             <Route path='/' exact>
-            <Container>
+            <GridContainer>
               <h1 className="m-5">{title}</h1>
                 <Row className="justify-content-md-center">
                   <Col sm><DisplayEventInfo /></Col>
                   <Col sm><DisplayBasicInfo data={data.main} /></Col>
                 </Row> 
-            </Container>
+            </GridContainer>
               <NewPlayerPage />
             </Route>
             <Route path='/registered'>

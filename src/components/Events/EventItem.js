@@ -5,27 +5,22 @@ import Card from '../UI/Card';
 import './EventItem.css';
 
 const EventItem = (props) => {
-    // const result = props.result
-    // console.log(result)
-    // console.log(props.isResultNull)
-    const date = props.date
 
     const currentDate = new Date()
     console.log('currentDate:', currentDate)
 
-    const isPast = (date) => {
-       if (date < currentDate) {
-           return true
-        // console.log(date < currentDate)
-       }
-    };
-    // console.log(isPast(date))
+    // const isPast = (date) => {
+    //    if (date < currentDate) {
+    //        return false
+    //     // console.log(date < currentDate)
+    //    }
+    // };
 
     return (
         <li>
             <Card className='expense-item'>
-                <EventDate date={new Date(props.date)} />
-                {props.isResultNull ?
+                <EventDate date={props.date} />
+                {!props.result ?
                 <h2 className='events-list__fallback'>Upcoming...</h2>
                 : 
                 <div className='expense-item__description'>

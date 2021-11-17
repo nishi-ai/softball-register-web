@@ -9,10 +9,10 @@ const apiUrl = process.env.REACT_APP_SERVER_URL
 const DisplayEventInfo = () => {
     const [ eventData, setEventData ] = useState([]);
     
-    const getPlayersDataHandler = async () => {
+    const getEventDataHandler = async () => {
         try {
             const result = await fetch(
-                `${apiUrl}/events`,
+                `${apiUrl}/events`
             );
             let responseData = await result.json();
             responseData = responseData.map(item => {
@@ -25,13 +25,14 @@ const DisplayEventInfo = () => {
                 setEventData(responseData);
             };
         } catch (error) {
+            alert('fetch failed!!!')
             console.log(error);
             // window.location = "/500"
         };
     }
     // call get data handler in the useEffect hook which runs once when the component is mounted.
     useEffect(() => {
-        getPlayersDataHandler();
+        getEventDataHandler();
     }, []);
 
     return (
