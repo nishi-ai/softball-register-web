@@ -4,7 +4,6 @@ import { Carousel } from 'react-bootstrap'
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
 function DisplayBasicInfo (props) {
-    const name = props.data.teamName;
     const discription = props.data.discription;
     const registerationExplanation = props.data.registeration;
     const location = props.data.location;
@@ -13,12 +12,10 @@ function DisplayBasicInfo (props) {
         return 'images/'+image;
     });
     
-  
     return (
         <section id="BasicInfos">
             <div className="row banner">
                 <div className="banner-text">
-                    <h2 className="mb-5">{name}</h2>
                     <h4 className="mb-3"><FontAwesomeIcon icon={faLocationArrow} size='xs'/> {location}</h4>
                     <p className="">{discription}</p>
                 </div>
