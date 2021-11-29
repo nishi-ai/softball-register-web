@@ -4,7 +4,6 @@ import PasswordForm from '../components/PasswordForm'
 import PlayerList from './PlayerList';
 
 const apiUrl = process.env.REACT_APP_SERVER_URL
-const token = process.env.REACT_APP_TOKEN
 
 function LoginToAdminPage() {
     const [ authorized , setAuthorized ] = useState(false);
@@ -46,9 +45,10 @@ function LoginToAdminPage() {
 
         try {
             const result = await fetch(
-                `${apiUrl}/admin/players/?password=${adminPassword}`,
+                // `${apiUrl}/admin/players/?password=${adminPassword}`,
+                `${apiUrl}/admin/players/`,
                 {
-                    headers: { 'Authorization': `Token ${token}`}
+                    headers: { 'Authorization': `Token ${adminPassword}`}
                 });
             let responseData = await result.json();
             responseData = responseData.map(item => {
