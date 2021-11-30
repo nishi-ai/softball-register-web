@@ -1,7 +1,12 @@
 import { React } from 'react';
+import styled from "styled-components";
 
 import EventItem from './EventItem'
-import './EventCard.css'
+
+const StyledUnOrderedList = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
 
 function EventCard (props) {
 
@@ -16,7 +21,7 @@ function EventCard (props) {
     // };
 
     return (
-       <ul className='events-list'>
+       <StyledUnOrderedList>
         {data.map((item) => (
         <EventItem
           key={item.id}
@@ -24,7 +29,7 @@ function EventCard (props) {
           result={item.result}
         />
       ))}
-    </ul>
+    </StyledUnOrderedList>
     )
 }
 
