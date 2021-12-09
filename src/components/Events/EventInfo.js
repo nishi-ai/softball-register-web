@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import styled from "styled-components";
 
 import  EventCard  from './EventCard'
 import Card from '../UI/Card';
-import './EventInfo.css';
+
+const StyledCard = styled(Card)`
+    padding: 1rem;
+    background-color: rgb(31, 31, 31);
+    margin: 2rem auto;
+    max-width: 95%;
+`;
 
 const apiUrl = process.env.REACT_APP_SERVER_URL
 
@@ -37,11 +44,11 @@ const DisplayEventInfo = () => {
 
     return (
         <div>
-      <Card className='events'>
+      <StyledCard>
          <EventCard 
             eventData={eventData}      
          />
-      </Card>
+      </StyledCard>
     </div>
     );
   }

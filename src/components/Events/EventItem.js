@@ -1,8 +1,63 @@
 import React from 'react';
+import styled from "styled-components";
 
 import EventDate from './EventDate';
 import Card from '../UI/Card';
-import './EventItem.css';
+
+const StyledCard = styled(Card)`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    background-color: #4b4b4b;
+`;
+
+const StyledText = styled.h2`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+    align-items: center;
+    flex-flow: column-reverse;
+    justify-content: flex-start;
+    flex: 1;
+    color: white;
+    text-align: center;
+    @media (min-width: 580px) {
+          font-size: 1.25rem;
+    }
+`;
+
+const StyledDescription = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    flex-flow: column-reverse;
+    justify-content: flex-start;
+    flex: 1;
+    @media (min-width: 580px) {
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+    }
+`;
+
+const StyledResult = styled.div`
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #282c34;
+    border: 1px solid white;
+    padding: 0.5rem;
+    border-radius: 12px;
+    align-items: center;
+    @media (min-width: 580px) {
+        font-size: 1.25rem;
+        padding: 0.5rem 1.5rem;
+    }
+`
 
 const EventItem = (props) => {
 
@@ -18,18 +73,17 @@ const EventItem = (props) => {
 
     return (
         <li>
-            <Card className='expense-item'>
+            <StyledCard>
                 <EventDate date={props.date} />
                 {!props.result ?
-                <h2 className='events-list__fallback'>Upcoming...</h2>
+                <StyledText>Upcoming...</StyledText>
                 : 
-                <div className='expense-item__description'>
-                    <h2>{props.title}</h2>
-                    <div className='expense-item__price'>
+                <StyledDescription>
+                    <StyledResult>
                         Cats {props.result.cats} vs Dogs {props.result.dogs}
-                    </div>
-                </div>} 
-            </Card>
+                    </StyledResult>
+                </StyledDescription>} 
+            </StyledCard>
         </li>
     );
 };
