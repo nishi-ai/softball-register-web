@@ -42,10 +42,14 @@ function LoginToAdminPage() {
 
         setCallLoading(true);
         setShowPasswordErrorMessage(false);
+
         try {
             const result = await fetch(
-                `${apiUrl}/admin/players/?password=${adminPassword}`,
-            );
+                // `${apiUrl}/admin/players/?password=${adminPassword}`,
+                `${apiUrl}/admin/players/`,
+                {
+                    headers: { 'Authorization': `Token ${adminPassword}`}
+                });
             let responseData = await result.json();
             responseData = responseData.map(item => {
                 return {
@@ -61,10 +65,9 @@ function LoginToAdminPage() {
             if (result.status === 403) {
                 setShowPasswordErrorMessage(true)
             };
-            
         } catch (error) {
             console.log(error);
-            window.location = "/500"
+            // window.location = "/500"
         };
         setCallLoading(false);
     }
