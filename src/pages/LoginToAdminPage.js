@@ -46,10 +46,8 @@ function LoginToAdminPage() {
 
         try {
             const result = await fetch(
-                // `${apiUrl}/admin/players/?password=${adminPassword}`,
                 `${apiUrl}/admin/players/`,
                 {   
-                    // method: 'POST',
                     headers: { 'Authorization': `Token ${adminPassword}`}
                 });
             let responseData = await result.json();

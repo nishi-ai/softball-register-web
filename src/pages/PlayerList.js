@@ -23,12 +23,13 @@ function PlayerList (props) {
 
         try {
             const fetchResult = await fetch(
-                `${apiUrl}/admin/players/?password=${adminPassword}`,
+                `${apiUrl}/admin/players/`,
                 {
                     method: 'DELETE',
                     body: JSON.stringify(emailsArray),
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Token ${adminPassword}`
                     }
                 }
             )
