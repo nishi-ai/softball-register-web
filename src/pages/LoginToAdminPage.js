@@ -38,6 +38,7 @@ function LoginToAdminPage() {
     
     const getPlayersDataHandler = async (password) => {
         const adminPassword = password
+        console.log('adminPassword', adminPassword)
         setPassword(adminPassword)
 
         setCallLoading(true);
@@ -47,18 +48,18 @@ function LoginToAdminPage() {
             const result = await fetch(
                 // `${apiUrl}/admin/players/?password=${adminPassword}`,
                 `${apiUrl}/admin/players/`,
-                {
+                {   
+                    // method: 'POST',
                     headers: { 'Authorization': `Token ${adminPassword}`}
                 });
             let responseData = await result.json();
-            responseData = responseData.map(item => {
-                return {
-                    ...item,
-                    selected: false
-                };
-            })
-
             if (result.status === 200) {
+                responseData = responseData.map(item => {
+                    return {
+                        ...item,
+                        selected: false
+                    };
+                })
                 setPlayersList(responseData);
                 setAuthorized(true);
             };
@@ -67,7 +68,7 @@ function LoginToAdminPage() {
             };
         } catch (error) {
             console.log(error);
-            // window.location = "/500"
+            window.location = "/500"
         };
         setCallLoading(false);
     }
