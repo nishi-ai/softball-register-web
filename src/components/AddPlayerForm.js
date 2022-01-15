@@ -1,10 +1,17 @@
 import { React } from 'react';
 // directly access to reference cue DOM elements
 import { Form, Button, Spinner } from 'react-bootstrap';
+import styled from "styled-components";
 
 import useInput from '../hooks/use-input'
 
 function AddPlayerForm(props) {
+
+    const StyledButton = styled(Button)`
+        color: #FFC15A;
+        background-color: #F5E8C0"
+    `;
+    
     // use hook useInput
     const {
         value: enteredName,
@@ -54,13 +61,13 @@ function AddPlayerForm(props) {
     };
 
         return (
-            <Form noValidate onSubmit={submitHandler} validated={enteredNameIsValid && enteredEmailIsValid}>
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor='playername'>Name</Form.Label>
+            <Form noValidate onSubmit={submitHandler} validated={enteredNameIsValid && enteredEmailIsValid} className='d-grid gap-2'>
+                <Form.Group className="">
+                    <Form.Label htmlFor='playername'></Form.Label>
                     <Form.Control
                         type="name"
                         id="name"
-                        placeholder="taro"
+                        placeholder="Name"
                         onChange={nameChangeHandler}
                         onBlur={nameBlurHanlder}
                         value={enteredName}
@@ -73,12 +80,12 @@ function AddPlayerForm(props) {
                     )}
                 </Form.Group>
     
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor='email'>Email</Form.Label>
+                <Form.Group>
+                    <Form.Label htmlFor='email'></Form.Label>
                     <Form.Control 
                         type="email"
                         id="email"
-                        placeholder="name@example.com"
+                        placeholder="email@example.com"
                         onChange={emailChangeHandler}
                         onBlur={emailBlurHanlder}
                         value={enteredEmail}
@@ -92,7 +99,7 @@ function AddPlayerForm(props) {
                     )}
                 </Form.Group>
                 
-                <Button variant="outline-primary" type="submit" disabled={!formIsValid || props.callLoading}>
+                <StyledButton variant="outline-warning" type="submit" className='mt-3' disabled={!formIsValid || props.callLoading}>
                 {props.callLoading && (
                     <Spinner
                     as="span"
@@ -103,7 +110,7 @@ function AddPlayerForm(props) {
                     />
                 )}
                 <span>Register</span>
-                </Button>{' '}
+                </StyledButton>{' '}
             </Form>
         );
 }

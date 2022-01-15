@@ -1,14 +1,7 @@
 .card_important {
     border-radius: 12px;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
     position: relative;
-    /* display: flex; */
-    /* flex-direction: column; */
+    display: flex;
     min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px
-    solid rgba(0,0,0,.125);
     border-radius: 0.25rem;
 }

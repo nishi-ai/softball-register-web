@@ -1,9 +1,9 @@
 import './App.css';
 import React, {Component} from 'react';
-import { Container as GridContainer, Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Registered from './components/Registered';
+import Title from './components/Title';
 import Error500 from './pages/500';
 import NewPlayerPage from './pages/NewPlayerPage';
 import LoginToAdminPage from './pages/LoginToAdminPage';
@@ -11,7 +11,6 @@ import DisplayBasicInfo from "./pages/BasicInfo";
 import DisplayEventInfo from "./components/Events/EventInfo";
 
 const data = require('./BasicData.json')
-const title = data.main.teamName;
 
 //files for understanding components, state and props
 class App extends Component {
@@ -22,14 +21,10 @@ class App extends Component {
         <div className="App">
         <Switch>
           <header className="App-header">
+           <Title data={data.main} />
             <Route path='/' exact>
-            <GridContainer>
-              <h1 className="m-5">{title}</h1>
-                <Row className="justify-content-md-center">
-                  <Col sm><DisplayEventInfo /></Col>
-                  <Col sm><DisplayBasicInfo data={data.main} /></Col>
-                </Row> 
-            </GridContainer>
+            <DisplayBasicInfo data={data.main} />
+            <DisplayEventInfo />
               <NewPlayerPage />
             </Route>
             <Route path='/registered'>
