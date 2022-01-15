@@ -36,13 +36,13 @@ function PasswordForm(props) {
     };
 
         return (
-            <Form noValidate onSubmit={submitHandler} validated={formIsValid}>
+            <Form noValidate onSubmit={submitHandler} validated={formIsValid} className='d-grid gap-2'>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor='playername'>Password</Form.Label>
+                    <Form.Label htmlFor='playername'></Form.Label>
                     <Form.Control
                         type="password"
                         id="password"
-                        placeholder="***"
+                        placeholder="password"
                         onChange={passwordChangeHandler}
                         onBlur={passwordBlurHanlder}
                         value={enteredPassword}
@@ -54,7 +54,7 @@ function PasswordForm(props) {
                     </p>
                     )}
                 </Form.Group> 
-                <Button variant="outline-primary" type="submit" disabled={!formIsValid || props.callLoading}>
+                <Button variant="outline-warning" type="submit" disabled={!formIsValid || props.callLoading}>
                 {props.callLoading && (
                     <Spinner
                     as="span"
