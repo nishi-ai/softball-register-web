@@ -1,52 +1,45 @@
 import { React } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Carousel } from 'react-bootstrap'
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import styled from "styled-components";
 
 function DisplayBasicInfo (props) {
     const discription = props.data.discription;
+    const sport = props.data.sportName;
     const registerationExplanation = props.data.registeration;
     const location = props.data.location;
 
-    const eachImage = props.data.images.map(image => {
-        return 'images/'+image;
-    });
+    const Location = styled.h3`
+        font-family: Monaco;
+        margin-bottom: 100px;
+        text-align: center;
+    `;
+
+    const Sport = styled.h2`
+        font-family: monospace;
+        font-weight: bold;
+        text-align: left;
+        font-size: 40px;
+        letter-spacing: .3em;
+    `;
+
+    const Discription = styled.h4`
+        font-family: Lato;
+        text-align: left;
+        font-weight: bold;
+        font-size: 30px !important;
+    `;
     
     return (
         <section id="BasicInfos">
-            <div className="row banner">
+            {/* <div className="row banner"> */}
                 <div className="banner-text">
-                    <h4 className="mb-3"><FontAwesomeIcon icon={faLocationArrow} size='xs'/> {location}</h4>
-                    <p className="">{discription}</p>
+                    <Location><FontAwesomeIcon icon={faLocationArrow} size='xs'/> {location}</Location>
+                    <Sport>{sport}</Sport>
+                    <Discription>{discription}</Discription>
                 </div>
-                <Carousel>
-                <Carousel.Item>
-                    <img
-                    src={eachImage[0]}
-                    alt="First slide"
-                    />
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    src={eachImage[1]}
-                    alt="Second slide"
-                    />
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    src={eachImage[2]}
-                    alt="Third slide"
-                    />
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    src={eachImage[3]}
-                    alt="Third slide"
-                    />
-                </Carousel.Item>
-                </Carousel>
-            <p>{registerationExplanation}</p>
-            </div>
+            <Discription>{registerationExplanation}</Discription>
+            {/* </div> */}
         </section>
     );
   }

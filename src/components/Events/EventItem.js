@@ -10,7 +10,7 @@ const StyledCard = styled(Card)`
     align-items: center;
     padding: 0.5rem;
     margin: 1rem 0;
-    background-color: #4b4b4b;
+    background-color: #1F2434;
 `;
 
 const StyledText = styled.h2`
@@ -48,8 +48,6 @@ const StyledResult = styled.div`
     font-size: 1rem;
     font-weight: bold;
     color: white;
-    background-color: #282c34;
-    border: 1px solid white;
     padding: 0.5rem;
     border-radius: 12px;
     align-items: center;

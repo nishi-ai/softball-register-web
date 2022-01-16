@@ -6,9 +6,8 @@ import Card from '../UI/Card';
 
 const StyledCard = styled(Card)`
     padding: 1rem;
-    background-color: rgb(31, 31, 31);
     margin: 2rem auto;
-    max-width: 95%;
+    width: max-content;
 `;
 
 const apiUrl = process.env.REACT_APP_SERVER_URL
@@ -45,9 +44,7 @@ const DisplayEventInfo = () => {
     return (
         <div>
       <StyledCard>
-         <EventCard 
-            eventData={eventData}      
-         />
+         <EventCard eventData={eventData}/>
       </StyledCard>
     </div>
     );

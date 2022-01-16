@@ -6,8 +6,8 @@ const StyledDate = styled.div`
     flex-direction: column;
     width: 5.5rem;
     height: 5.5rem;
-    border: 1px solid #ececec;
-    background-color: #2a2a2a;
+    border: 1px solid #FFC15A;
+    background-color: #1F2434;
     color: white;
     border-radius: 12px;
     align-items: center;
