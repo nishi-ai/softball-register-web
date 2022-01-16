@@ -23,8 +23,8 @@ class App extends Component {
           <header className="App-header">
            <Title data={data.main} />
             <Route path='/' exact>
-            <DisplayBasicInfo data={data.main} />
-            <DisplayEventInfo />
+              <DisplayBasicInfo data={data.main} />
+              <DisplayEventInfo />
               <NewPlayerPage />
             </Route>
             <Route path='/registered'>

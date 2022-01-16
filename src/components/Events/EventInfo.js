@@ -44,9 +44,7 @@ const DisplayEventInfo = () => {
     return (
         <div>
       <StyledCard>
-         <EventCard 
-            eventData={eventData}      
-         />
+         <EventCard eventData={eventData}/>
       </StyledCard>
     </div>
     );
