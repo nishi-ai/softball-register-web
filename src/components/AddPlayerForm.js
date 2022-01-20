@@ -11,6 +11,11 @@ function AddPlayerForm(props) {
         color: #FFC15A;
         background-color: #F5E8C0"
     `;
+
+    const nameInput = styled(Form.Control)`
+        color: #FFC15A;
+        background-color: #F5E8C0"
+    `;
     
     // use hook useInput
     const {

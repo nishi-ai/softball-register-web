@@ -32,14 +32,12 @@ function DisplayBasicInfo (props) {
     
     return (
         <section id="BasicInfos">
-            {/* <div className="row banner"> */}
                 <div className="banner-text">
                     <Location><FontAwesomeIcon icon={faLocationArrow} size='xs'/> {location}</Location>
                     <Sport>{sport}</Sport>
                     <Discription>{discription}</Discription>
                 </div>
             <Discription>{registerationExplanation}</Discription>
-            {/* </div> */}
         </section>
     );
   }
