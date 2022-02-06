@@ -3,19 +3,23 @@ import styled from "styled-components";
 
 import  EventCard  from './EventCard'
 import Card from '../UI/Card';
+import LoadingDots from '../LoadingDots';
 
 const StyledCard = styled(Card)`
     padding: 1rem;
     margin: 2rem auto;
+    margin-bottom: 4rem;
     width: max-content;
 `;
 
 const apiUrl = process.env.REACT_APP_SERVER_URL
 
 const DisplayEventInfo = () => {
+    const [ callLoading , setCallLoading ] = useState(false);
     const [ eventData, setEventData ] = useState([]);
     
     const getEventDataHandler = async () => {
+        setCallLoading(true)
         try {
             const result = await fetch(
                 `${apiUrl}/events`
@@ -35,6 +39,7 @@ const DisplayEventInfo = () => {
             console.log(error);
             // window.location = "/500"
         };
+        setCallLoading(false);
     }
     // call get data handler in the useEffect hook which runs once when the component is mounted.
     useEffect(() => {
@@ -43,10 +48,15 @@ const DisplayEventInfo = () => {
 
     return (
         <div>
-      <StyledCard>
-         <EventCard eventData={eventData}/>
-      </StyledCard>
-    </div>
+            <StyledCard>
+                {callLoading && (
+                    <LoadingDots/>
+                )}
+                <EventCard 
+                    eventData={eventData}
+                />
+            </StyledCard>
+        </div>
     );
   }
 
