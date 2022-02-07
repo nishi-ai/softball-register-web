@@ -15,11 +15,11 @@ const StyledCard = styled(Card)`
 const apiUrl = process.env.REACT_APP_SERVER_URL
 
 const DisplayEventInfo = () => {
-    const [ callLoading , setCallLoading ] = useState(false);
+    const [ iscallLoading , setIscallLoading ] = useState(false);
     const [ eventData, setEventData ] = useState([]);
     
     const getEventDataHandler = async () => {
-        setCallLoading(true)
+        setIscallLoading(true)
         try {
             const result = await fetch(
                 `${apiUrl}/events`
@@ -39,7 +39,7 @@ const DisplayEventInfo = () => {
             console.log(error);
             // window.location = "/500"
         };
-        setCallLoading(false);
+        setIscallLoading(false);
     }
     // call get data handler in the useEffect hook which runs once when the component is mounted.
     useEffect(() => {
@@ -49,7 +49,7 @@ const DisplayEventInfo = () => {
     return (
         <div>
             <StyledCard>
-                {callLoading && (
+                {iscallLoading && (
                     <LoadingDots/>
                 )}
                 <EventCard 
