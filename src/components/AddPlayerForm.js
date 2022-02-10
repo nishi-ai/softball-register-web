@@ -99,8 +99,8 @@ function AddPlayerForm(props) {
                     )}
                 </Form.Group>
                 
-                <StyledButton variant="outline-warning" type="submit" className='mt-3' disabled={!formIsValid || props.callLoading}>
-                {props.callLoading && (
+                <StyledButton variant="outline-warning" type="submit" className='mt-3' disabled={!formIsValid || props.isCallLoading}>
+                {props.isCallLoading && (
                     <Spinner
                     as="span"
                     animation="border"
