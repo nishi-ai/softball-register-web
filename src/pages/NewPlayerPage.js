@@ -44,7 +44,6 @@ function NewPlayerPage() {
             if (fetchResult.status === 200) {
                 console.log('before window change');
                 window.location = "/registered"
-                console.log('successful registered');
             }
             if (fetchResult.status === 409) {
                 console.log('----  email is already taken');
