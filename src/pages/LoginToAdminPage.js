@@ -7,7 +7,7 @@ const apiUrl = process.env.REACT_APP_SERVER_URL
 
 function LoginToAdminPage() {
     const [ authorized , setAuthorized ] = useState(false);
-    const [ callLoading , setCallLoading ] = useState(false);
+    const [ iscallLoading , setIscallLoading ] = useState(false);
     const [ showPasswordErrorMessage, setShowPasswordErrorMessage ] = useState(false)
     const [ playersList, setPlayersList ] = useState([]);
     const [ password, setPassword ] = useState('');
@@ -41,7 +41,7 @@ function LoginToAdminPage() {
         console.log('adminPassword', adminPassword)
         setPassword(adminPassword)
 
-        setCallLoading(true);
+        setIscallLoading(true);
         setShowPasswordErrorMessage(false);
 
         try {
@@ -68,13 +68,13 @@ function LoginToAdminPage() {
             console.log(error);
             window.location = "/500"
         };
-        setCallLoading(false);
+        setIscallLoading(false);
     }
     
     return (
     <section id="form">
         {!authorized && <PasswordForm
-            callLoading={callLoading}
+            iscallLoading={iscallLoading}
             getPlayersDataHandler={getPlayersDataHandler}
             showPasswordErrorMessage={showPasswordErrorMessage}
         />}

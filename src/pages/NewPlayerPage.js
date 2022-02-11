@@ -5,7 +5,7 @@ import AddPlayerForm from "../components/AddPlayerForm";
 const apiUrl = process.env.REACT_APP_SERVER_URL
 
 function NewPlayerPage() {
-    const [ callLoading , setCallLoading ] = useState(false);
+    const [ isCallLoading , setIsCallLoading ] = useState(false);
     const [ showNameErrorMessage, setShowNameErrorMessage ] = useState(false)
     const [ showEmailErrorMessage, setShowEmailErrorMessage ] = useState(false)
     const [ showDupliEmailErrorMessage, setShowDupliEmailErrorMessage ] = useState(false)
@@ -13,7 +13,7 @@ function NewPlayerPage() {
     // add async to be able to switch the page on the right timing after registration
     async function addPlayerHandler(playerData) {
         console.log("------", playerData)
-        setCallLoading(true)
+        setIsCallLoading(true)
         setShowNameErrorMessage(false)
         setShowEmailErrorMessage(false)
         // send HTTP request to fetched URL, where you want to send
@@ -42,6 +42,7 @@ function NewPlayerPage() {
             console.log('response json',response);
 
             if (fetchResult.status === 200) {
+                console.log('before window change');
                 window.location = "/registered"
             }
             if (fetchResult.status === 409) {
@@ -69,14 +70,14 @@ function NewPlayerPage() {
             console.log('error here:', error)
         }
         // disable button in case there's an http request running
-        setCallLoading(false);
+        setIsCallLoading(false);
     }
     return (
         <section id="form">
             {/* pass addPlayerHandler without () just pointing at a value to onAddPlayer */}
             <AddPlayerForm
                 // export functions to allow to use in a child component 
-                callLoading={callLoading}
+                isCallLoading={isCallLoading}
                 onAddPlayer={addPlayerHandler}
                 showNameErrorMessage={showNameErrorMessage}
                 showEmailErrorMessage={showEmailErrorMessage}
