@@ -80,10 +80,12 @@ function LoginToAdminPage() {
         const storedPassword = sessionStorage.getItem('storedPassword')
         console.log('>>>',storedPassword)
         if( storedPassword ) {
-            console.log('>>>effect');
+            console.log('>>>effect called one time');
             getSuccessfullFechedData(storedPassword)
         }
     }, []);
+    // called when this component is displayed.
+    // (every refreshing, it will show)
     console.log('>>>called');
     
     return (
