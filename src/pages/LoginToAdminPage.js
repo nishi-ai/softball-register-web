@@ -56,7 +56,7 @@ function LoginToAdminPage() {
         };
         if (result.status === 403) {
             setShowPasswordErrorMessage(true)
-            sessionStorage.clear(password);
+            sessionStorage.removeItem('storedPassword');
         };
     }
 
@@ -83,10 +83,9 @@ function LoginToAdminPage() {
         if( storedPassword ) {
             console.log('>>>effect called one time');
             try {
-                await getSuccessfullFechedData(storedPassword)
+                await getSuccessfullFechedData(storedPassword);
             } catch (error) {
-                console.log(error);
-                window.location = "/500"
+                console.log("error", error);
             }
             
         }
