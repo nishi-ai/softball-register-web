@@ -23,6 +23,7 @@ function PasswordForm(props) {
         event.preventDefault();
 
         if (!formIsValid) {
+            
             return;
         }    
         // Rest API to send server & DB

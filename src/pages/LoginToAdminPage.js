@@ -56,6 +56,7 @@ function LoginToAdminPage() {
         };
         if (result.status === 403) {
             setShowPasswordErrorMessage(true)
+            sessionStorage.clear(password);
         };
     }
 
@@ -67,7 +68,7 @@ function LoginToAdminPage() {
         setShowPasswordErrorMessage(false);
 
         try {
-            getSuccessfullFechedData(adminPassword)
+            await getSuccessfullFechedData(adminPassword)
         } catch (error) {
             console.log(error);
             window.location = "/500"
@@ -76,12 +77,18 @@ function LoginToAdminPage() {
     }
     // UseEffect content will disply in the first place one time.
     // if some state is inside of array [] and updated, useEffect will be called again.  
-    useEffect(() => {
+    useEffect( async () => {
         const storedPassword = sessionStorage.getItem('storedPassword')
         console.log('>>>',storedPassword)
         if( storedPassword ) {
             console.log('>>>effect called one time');
-            getSuccessfullFechedData(storedPassword)
+            try {
+                await getSuccessfullFechedData(storedPassword)
+            } catch (error) {
+                console.log(error);
+                window.location = "/500"
+            }
+            
         }
     }, []);
     // called when this component is displayed.
