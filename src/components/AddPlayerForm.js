@@ -6,7 +6,6 @@ import styled from "styled-components";
 import useInput from '../hooks/use-input'
 
 function AddPlayerForm(props) {
-
     // use hook useInput
     const {
         value: enteredName,
