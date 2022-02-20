@@ -4,18 +4,14 @@ const apiUrl = process.env.REACT_APP_SERVER_URL
 
 function PlayerList (props) { 
     const players = props.playersList
-    console.log('AdminPage', players)
-
     // select all
     const onSelectAll = (e) => {
         props.setPlayerSelectedAll(e.target.checked);
     }
-
     // select items
     const onItemCheck = (e, index) => {
         props.setPlayerSelected(index, e.target.checked)  
     }
-
     const deleteSelectedPlayers = async () => {
         // extract only emails from selected items, use faltmap
         const emailsArray = players.flatMap((e) => e.selected ? [e.email] : [])

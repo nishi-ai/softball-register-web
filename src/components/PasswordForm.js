@@ -23,13 +23,17 @@ function PasswordForm(props) {
         event.preventDefault();
 
         if (!formIsValid) {
+            
             return;
         }    
         // Rest API to send server & DB
         const passwordObject = {
             password: enteredPassword
         };
-        console.log(passwordObject.password)
+        console.log('>>>entered Password:', passwordObject.password);
+    
+        sessionStorage.setItem('storedPassword', passwordObject.password)
+
         props.getPlayersDataHandler(passwordObject.password);
         // reset states
         resetTouchedPasswordField();
@@ -53,7 +57,7 @@ function PasswordForm(props) {
                          Please enter a valid password
                     </p>
                     )}
-                </Form.Group> 
+                </Form.Group>
                 <Button variant="outline-warning" type="submit" disabled={!formIsValid || props.iscallLoading}>
                 {props.iscallLoading && (
                     <Spinner

@@ -42,7 +42,6 @@ function NewPlayerPage() {
             console.log('response json',response);
 
             if (fetchResult.status === 200) {
-                console.log('before window change');
                 window.location = "/registered"
             }
             if (fetchResult.status === 409) {

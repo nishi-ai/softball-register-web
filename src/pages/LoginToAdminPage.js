@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import PasswordForm from '../components/PasswordForm'
 import PlayerList from './PlayerList';
@@ -36,40 +36,63 @@ function LoginToAdminPage() {
         setPlayersList(tempArray);
     }
     
+    const getSuccessfullFechedData = async (password) => {
+        setPassword(password)
+        const result = await fetch(
+            `${apiUrl}/admin/players/`,
+            {   
+                headers: { 'Authorization': `Token ${password}`}
+            });
+        let responseData = await result.json();
+        if (result.status === 200) {
+            responseData = responseData.map(item => {
+                return {
+                    ...item,
+                    selected: false
+                };
+            })
+            setPlayersList(responseData);
+            setAuthorized(true);
+        };
+        if (result.status === 403) {
+            setShowPasswordErrorMessage(true)
+            sessionStorage.removeItem('storedPassword');
+        };
+    }
+
     const getPlayersDataHandler = async (password) => {
         const adminPassword = password
         console.log('adminPassword', adminPassword)
-        setPassword(adminPassword)
 
         setIscallLoading(true);
         setShowPasswordErrorMessage(false);
 
         try {
-            const result = await fetch(
-                `${apiUrl}/admin/players/`,
-                {   
-                    headers: { 'Authorization': `Token ${adminPassword}`}
-                });
-            let responseData = await result.json();
-            if (result.status === 200) {
-                responseData = responseData.map(item => {
-                    return {
-                        ...item,
-                        selected: false
-                    };
-                })
-                setPlayersList(responseData);
-                setAuthorized(true);
-            };
-            if (result.status === 403) {
-                setShowPasswordErrorMessage(true)
-            };
+            await getSuccessfullFechedData(adminPassword)
         } catch (error) {
             console.log(error);
             window.location = "/500"
         };
         setIscallLoading(false);
     }
+    // UseEffect content will disply in the first place one time.
+    // if some state is inside of array [] and updated, useEffect will be called again.  
+    useEffect( async () => {
+        const storedPassword = sessionStorage.getItem('storedPassword')
+        console.log('>>>',storedPassword)
+        if( storedPassword ) {
+            console.log('>>>effect called one time');
+            try {
+                await getSuccessfullFechedData(storedPassword);
+            } catch (error) {
+                console.log("error", error);
+            }
+            
+        }
+    }, []);
+    // called when this component is displayed.
+    // (every refreshing, it will show)
+    console.log('>>>called');
     
     return (
     <section id="form">
