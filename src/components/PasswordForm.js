@@ -54,8 +54,8 @@ function PasswordForm(props) {
                     </p>
                     )}
                 </Form.Group> 
-                <Button variant="outline-warning" type="submit" disabled={!formIsValid || props.callLoading}>
-                {props.callLoading && (
+                <Button variant="outline-warning" type="submit" disabled={!formIsValid || props.iscallLoading}>
+                {props.iscallLoading && (
                     <Spinner
                     as="span"
                     animation="border"

@@ -6,17 +6,6 @@ import styled from "styled-components";
 import useInput from '../hooks/use-input'
 
 function AddPlayerForm(props) {
-
-    const StyledButton = styled(Button)`
-        color: #FFC15A;
-        background-color: #F5E8C0"
-    `;
-
-    const nameInput = styled(Form.Control)`
-        color: #FFC15A;
-        background-color: #F5E8C0"
-    `;
-    
     // use hook useInput
     const {
         value: enteredName,
@@ -104,7 +93,7 @@ function AddPlayerForm(props) {
                     )}
                 </Form.Group>
                 
-                <StyledButton variant="outline-warning" type="submit" className='mt-3' disabled={!formIsValid || props.callLoading}>
+                <Button variant="outline-warning" type="submit" className='mt-3' disabled={!formIsValid || props.callLoading}>
                 {props.callLoading && (
                     <Spinner
                     as="span"
@@ -115,7 +104,7 @@ function AddPlayerForm(props) {
                     />
                 )}
                 <span>Register</span>
-                </StyledButton>{' '}
+                </Button>{' '}
             </Form>
         );
 }

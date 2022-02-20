@@ -1,6 +1,7 @@
-import React from 'react'
-import styled, { keyframes } from "styled-components";
-import { fadeIn } from 'react-animations'
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import styled, { keyframes, css } from "styled-components";
+import { fadeIn } from 'react-animations';
 
 const fadeInAnimation = keyframes`${fadeIn}`;
 
@@ -10,12 +11,18 @@ const TitleDiv = styled.div`
 `;
 
 const TitleImage = styled.div`
-    // position: relative;
     margin-top: 200;
     padding: 2rem;
     margin: 10rem auto;
     max-width: 95%;
     marging-buttom: 2;
+    border-radius: 50%;
+    &:hover {
+      cursor: pointer;
+      box-shadow: inset 0 0 35px 0px rgba(0, 0, 0, 0.15),
+          inset 0 2px 1px 1px rgba(255, 255, 255, 0),
+          1px 1px 15px 2px rgba(154, 137, 164, 0.1);
+    }
 `;
 
 const TextOnImage = styled.div`
@@ -31,9 +38,16 @@ const TextOnImage = styled.div`
 `;
 
 const Title = (props) => {
+
+  const history = useHistory();
+  const routeChange = () => { 
+    let path = `/`; 
+    history.push(path);
+  }
+
     return (
         <TitleDiv>
-          <TitleImage>
+          <TitleImage onClick={routeChange}>
             <img
               src={props.data.titleImage}
               alt=""
