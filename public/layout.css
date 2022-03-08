@@ -1,5 +1,14 @@
 /* body { color: white !important; } */
 
+.MuiDataGrid-root {
+   color: white !important;
+}
+.MuiCheckbox-root {
+   color: white !important;
+}
+.MuiTablePagination-root {
+   color: white !important;
+}
 /* Header */
 #home {
    position: relative;
@@ -104,6 +113,7 @@ header .social li a:hover { color: #11ABB0; }
    margin: 100px;
    margin-top: 18px;
    padding-top: 5px;
+   /* color: white !important; */
 }
  
 .error-text {

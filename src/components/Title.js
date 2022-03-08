@@ -33,6 +33,7 @@ const TextOnImage = styled.div`
     bottom: 10%;
     margin: 5rem auto;
     text-align: center;
+    pointer-events:none;
     animation: 2s ${fadeInAnimation};
     font-family: 'Italianno', cursive;
 `;

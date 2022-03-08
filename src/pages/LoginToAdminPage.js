@@ -14,7 +14,7 @@ function LoginToAdminPage() {
 
     // create selected players list
     const setPlayerSelected = (index, isSelected) => {
-        // create a temporary playerlist to make sure not to changie the original.
+        // create a temporary playerlist to make sure not to change the original.
         const tempArray = playersList.map(player => {
             return {
                 ...player,
@@ -45,9 +45,10 @@ function LoginToAdminPage() {
             });
         let responseData = await result.json();
         if (result.status === 200) {
-            responseData = responseData.map(item => {
+            responseData = responseData.map((item, index) => {
                 return {
                     ...item,
+                    id: index + 1,
                     selected: false
                 };
             })
@@ -107,7 +108,8 @@ function LoginToAdminPage() {
                 password={password}
                 getPlayersDataHandler={getPlayersDataHandler}
                 setPlayerSelected={setPlayerSelected}
-                setPlayerSelectedAll={setPlayerSelectedAll} />
+                setPlayerSelectedAll={setPlayerSelectedAll}
+                />
         )}
     </section>
     )
