@@ -40,7 +40,9 @@ function NewPlayerPage() {
             const response = await fetchResult.json();
             // console loged data
             console.log('response json',response);
-
+            if (fetchResult.status === 500) {
+                console.log('response', response);
+            }
             if (fetchResult.status === 200) {
                 window.location = "/registered"
             }
