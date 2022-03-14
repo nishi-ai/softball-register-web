@@ -5,29 +5,29 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const apiUrl = process.env.REACT_APP_SERVER_URL
 
+const headCells = [
+    {
+        id: 'id',
+        numeric: true,
+        label: 'ID',
+    },
+    {
+        id: 'name',
+        numeric: false,
+        label: 'name',
+    },
+    {
+        id: 'email',
+        numeric: false,
+        label: 'email',
+    }
+  ];
+   
 function PlayerList (props) {
     const players = props.playersList
     const selectedPlayers = players.filter((player) => player.selected === true);
     const IsSelected = selectedPlayers.length > 0;
 
-    const headCells = [
-        {
-            id: 'id',
-            numeric: true,
-            label: 'ID',
-        },
-        {
-            id: 'name',
-            numeric: false,
-            label: 'name',
-        },
-        {
-            id: 'email',
-            numeric: false,
-            label: 'email',
-        }
-      ];
-       
     // select all
     const onSelectAll = (e) => {
         props.setPlayerSelectedAll(e.target.checked);
