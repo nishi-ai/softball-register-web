@@ -102,7 +102,7 @@ function AddPlayerForm(props) {
                     aria-hidden="true"
                     />
                 )}
-                <span>Register</span>
+                <span>I'm in</span>
                 </Button>{' '}
             </Form>
         );
