@@ -3,42 +3,42 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import styled from "styled-components";
 
+const Location = styled.h3`
+font-family: Monaco;
+margin-bottom: 100px;
+text-align: center;
+`;
+
+const Title = styled.h2`
+font-family: monospace;
+font-weight: bold;
+text-align: left;
+font-size: 25px;
+letter-spacing: .1em;
+`;
+
+const Description = styled.h4`
+font-family: Lato;
+text-align: left;
+font-weight: bold;
+font-size: 25px !important;
+`;
+
+const Container = styled.div`
+max-width: 700px;
+`;
+
 function DisplayBasicInfo (props) {
-    const discription = props.data.discription;
-    const sport = props.data.sportName;
-    const registerationExplanation = props.data.registeration;
-    const location = props.data.location;
-
-    const Location = styled.h3`
-        font-family: Monaco;
-        margin-bottom: 100px;
-        text-align: center;
-    `;
-
-    const Sport = styled.h2`
-        font-family: monospace;
-        font-weight: bold;
-        text-align: left;
-        font-size: 40px;
-        letter-spacing: .3em;
-    `;
-
-    const Discription = styled.h4`
-        font-family: Lato;
-        text-align: left;
-        font-weight: bold;
-        font-size: 30px !important;
-    `;
+    const { description, title, location } = props.data;
     
     return (
-        <section id="BasicInfos">
-                <div className="banner-text">
-                    <Location><FontAwesomeIcon icon={faLocationArrow} size='xs'/> {location}</Location>
-                    <Sport>{sport}</Sport>
-                    <Discription>{discription}</Discription>
-                </div>
-            <Discription>{registerationExplanation}</Discription>
-        </section>
+        <Container>
+            <Location>
+                <FontAwesomeIcon icon={faLocationArrow} size='xs'/> {location}
+            </Location>
+            <Title>{title}</Title>
+            <Description>{description}</Description>
+        </Container>
     );
   }
 

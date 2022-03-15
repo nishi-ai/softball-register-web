@@ -25,7 +25,7 @@ class App extends Component {
             <Route path='/' exact>
               <DisplayBasicInfo data={data.main} />
               <DisplayEventInfo />
-              <NewPlayerPage />
+              <NewPlayerPage data={data.main} />
             </Route>
             <Route path='/registered'>
               <Registered />

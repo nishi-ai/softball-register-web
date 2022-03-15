@@ -3,8 +3,9 @@
     "teamName": "CATS AND DOGS",
     "sportName": "SOFTBALL",
     "titleImage": "images/soft.png",
-    "discription": "Easy sport, absolute beginners can enjoy it. Enough gloves and a bat for everyone to use. Just bring your friends and family.",
-    "registeration": "We will send you an invitation to the upcoming games.",
+    "title": "A non-competitive fun softball game played once a month during Summer.",
+    "description": "The rules are simple and non-competitive. Anyone of any gender and/or skill level can play with us. Kids can play too. We’ll look out for them. We encourage those who have never played before to show up because the worst that can happen is that you’ll have a good time. We have enough gloves for everyone.",
+    "registeration": "There isn't going to be any kind of registraions. \nemails are only for the upcoming game schedule.",
     "images": [
       "soft1.jpeg",
       "soft2.jpeg",

@@ -1,10 +1,24 @@
 import { useState } from 'react';
+import styled from "styled-components";
 
 import AddPlayerForm from "../components/AddPlayerForm";
 
 const apiUrl = process.env.REACT_APP_SERVER_URL
 
-function NewPlayerPage() {
+const Container = styled.div`
+margin-bottom: 150px;
+`;
+
+const FormContainer = styled.div`
+height: 100%;
+padding: 40px 80px;
+`;
+
+const RegistrationDesc = styled.p`
+white-space: pre-line;
+`;
+
+function NewPlayerPage(props) {
     const [ isCallLoading , setIsCallLoading ] = useState(false);
     const [ showNameErrorMessage, setShowNameErrorMessage ] = useState(false)
     const [ showEmailErrorMessage, setShowEmailErrorMessage ] = useState(false)
@@ -73,18 +87,24 @@ function NewPlayerPage() {
         // disable button in case there's an http request running
         setIsCallLoading(false);
     }
+
+    const { registeration } = props.data;
+
     return (
-        <section id="form">
-            {/* pass addPlayerHandler without () just pointing at a value to onAddPlayer */}
-            <AddPlayerForm
-                // export functions to allow to use in a child component 
-                isCallLoading={isCallLoading}
-                onAddPlayer={addPlayerHandler}
-                showNameErrorMessage={showNameErrorMessage}
-                showEmailErrorMessage={showEmailErrorMessage}
-                showDupliEmailErrorMessage={showDupliEmailErrorMessage}
-                />
-        </section>
+        <Container>
+            <FormContainer>
+                {/* pass addPlayerHandler without () just pointing at a value to onAddPlayer */}
+                <AddPlayerForm
+                    // export functions to allow to use in a child component 
+                    isCallLoading={isCallLoading}
+                    onAddPlayer={addPlayerHandler}
+                    showNameErrorMessage={showNameErrorMessage}
+                    showEmailErrorMessage={showEmailErrorMessage}
+                    showDupliEmailErrorMessage={showDupliEmailErrorMessage}
+                    />
+            </FormContainer>
+            <RegistrationDesc>{registeration}</RegistrationDesc>
+        </Container>
     )
 }
 
