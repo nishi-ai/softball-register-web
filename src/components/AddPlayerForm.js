@@ -102,7 +102,7 @@ function AddPlayerForm(props) {
                     aria-hidden="true"
                     />
                 )}
-                <span>I'm in</span>
+                <span>Inform me about the next games</span>
                 </Button>{' '}
             </Form>
         );
