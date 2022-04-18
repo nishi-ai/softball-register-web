@@ -84,8 +84,8 @@ const EventTabPanel = (props) => {
   const allyears = props.data.map((item) => new Date(item.date).getFullYear());
   // remove duplicated year
   const years = allyears
-    .filter(function (item, year) {
-      return allyears.indexOf(item) === year;
+    .filter(function (item, position) {
+      return allyears.indexOf(item) === position;
     })
     .sort()
     .reverse();

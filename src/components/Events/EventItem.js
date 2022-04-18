@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import EventDate from "./EventDate";
 import Card from "../UI/Card";
+import { Upcoming } from "@mui/icons-material";
 
 const StyledCard = styled(Card)`
   display: flex;
@@ -51,17 +52,13 @@ const EventItem = (props) => {
     <li>
       <StyledCard>
         <EventDate date={props.date} />
-        {!props.result ? (
-          <StyledDescription>
-            <StyledResult> Upcoming... </StyledResult>
-          </StyledDescription>
-        ) : (
-          <StyledDescription>
-            <StyledResult>
-              Cats {props.result.cats} vs Dogs {props.result.dogs}
-            </StyledResult>
-          </StyledDescription>
-        )}
+        <StyledDescription>
+          <StyledResult>
+            {!props.result
+              ? "Upcoming..."
+              : `Cats ${props.result.cats} vs Dogs ${props.result.dogs}`}{" "}
+          </StyledResult>
+        </StyledDescription>
       </StyledCard>
     </li>
   );
