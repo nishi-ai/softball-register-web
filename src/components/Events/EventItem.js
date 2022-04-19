@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import EventDate from "./EventDate";
 import Card from "../UI/Card";
-import { Upcoming } from "@mui/icons-material";
 
 const StyledCard = styled(Card)`
   display: flex;
