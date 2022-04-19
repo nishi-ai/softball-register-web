@@ -1,35 +1,20 @@
-import { React } from 'react';
+import { React } from "react";
 import styled from "styled-components";
-import EventItem from './EventItem'
+import EventTabPanel from "./EventTabPanel";
 
 const StyledUnOrderedList = styled.ul`
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 `;
 
-function EventCard (props) {
+function EventCard(props) {
+  const data = props.eventData;
 
-    const data = props.eventData
-    console.log('props data:', data)
-
-    // const isPast = (date) => {
-    //    if (date < currentDate) {
-    //     //    return true
-    //     console.log(date < currentDate)
-    //    }
-    // };
-
-    return (
-      <StyledUnOrderedList>
-          {data.map((item) => (  
-          <EventItem
-            key={item.id}
-            date={new Date(item.date)}
-            result={item.result}
-          />
-        ))}
-      </StyledUnOrderedList>
-    )
+  return (
+    <StyledUnOrderedList key={data.id}>
+      <EventTabPanel key={data.id} data={data} />
+    </StyledUnOrderedList>
+  );
 }
 
 export default EventCard;
