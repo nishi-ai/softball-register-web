@@ -55,7 +55,7 @@ const EventItem = (props) => {
           <StyledResult>
             {!props.result
               ? "Upcoming..."
-              : `Cats ${props.result.cats} vs Dogs ${props.result.dogs}`}{" "}
+              : `Cats ${props.result.cats} vs Dogs ${props.result.dogs}`}
           </StyledResult>
         </StyledDescription>
       </StyledCard>
