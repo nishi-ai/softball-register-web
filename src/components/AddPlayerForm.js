@@ -102,8 +102,8 @@ function AddPlayerForm(props) {
                     aria-hidden="true"
                     />
                 )}
-                <span>Inform me about the next games</span>
-                </Button>{' '}
+                <span>Register</span>
+                </Button>
             </Form>
         );
 }
