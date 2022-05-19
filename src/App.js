@@ -21,7 +21,7 @@ class App extends Component {
         <div className="App">
         <Switch>
           <header className="App-header">
-            <Title data={data.main} />
+            <Title data={data.about} />
             <Route path='/' exact>
               <DisplayBasicInfo data={data.main} />
               <DisplayEventInfo />
@@ -31,7 +31,7 @@ class App extends Component {
               <Registered />
             </Route>
             <Route path='/about'>
-              <DisplayBasicInfo data={data.main} />
+              <DisplayBasicInfo data={data.about} />
             </Route>
             <Route path='/500'>
               <Error500/>

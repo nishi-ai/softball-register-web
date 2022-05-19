@@ -7,6 +7,7 @@ const Location = styled.h3`
 font-family: Monaco;
 margin-bottom: 100px;
 text-align: center;
+font-size: 24px;
 `;
 
 const Title = styled.h2`
@@ -17,15 +18,16 @@ font-size: 25px;
 letter-spacing: .1em;
 `;
 
-const Description = styled.h4`
+const Description = styled.p`
 font-family: Lato;
 text-align: left;
-font-weight: bold;
 font-size: 25px !important;
+white-space: pre-line;
 `;
 
 const Container = styled.div`
 max-width: 700px;
+margin: 20px;
 `;
 
 function DisplayBasicInfo (props) {
