@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from "styled-components";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -10,6 +10,7 @@ const StyledDiv = styled.div`
   align-items: center;
   justify-content: center;
   padding-right: 30px;
+  cursor: pointer;
 `;
 
 const ClipboardCopy = (props) => {
@@ -29,9 +30,9 @@ const ClipboardCopy = (props) => {
       <CopyToClipboard text={emails} onCopy={onCopyText}>
         <div>
           {isCopied ? (
-            <FontAwesomeIcon icon={['fas', 'clipboard-check']} size='lg' />
+            <FontAwesomeIcon icon={["fas", "clipboard-check"]} size='lg' />
           ) : (
-            <FontAwesomeIcon icon={['fas', 'copy']} size='lg' />
+            <FontAwesomeIcon icon={["fas", "copy"]} size='lg' />
           )}
         </div>
       </CopyToClipboard>
