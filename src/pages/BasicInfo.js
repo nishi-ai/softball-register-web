@@ -26,6 +26,7 @@ font-size: 25px !important;
 
 const Container = styled.div`
 max-width: 700px;
+margin: 0 20px;
 `;
 
 function DisplayBasicInfo (props) {
