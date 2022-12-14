@@ -35,7 +35,7 @@ const Tabs = (props) => {
     <div className='tabs'>
       <ul className='nav'>
         <TabNavItems
-          data={props.data}
+          years={years}
           value={value}
           handleOnClick={handleOnClick}
           id={value}
