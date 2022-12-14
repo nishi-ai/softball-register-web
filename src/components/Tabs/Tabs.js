@@ -39,12 +39,13 @@ const Tabs = (props) => {
           value={value}
           handleOnClick={handleOnClick}
           id={value}
+          key={value} 
         />
       </ul>
 
       <div className='list-content'>
         {years.map((year, index) => (
-          <TabPanel value={value} index={index}>
+          <TabPanel value={value} index={index} key={index}>
             {props.data
               .filter((item) => new Date(item.date).getFullYear() === year)
               .map((item) => {
