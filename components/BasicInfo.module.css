@@ -1,0 +1,28 @@
+.container {
+  max-width: 900px;
+  margin: 0 20px;
+}
+
+.location {
+  font-family: Lato;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.title {
+  font-family: Lato;
+  font-weight: bold;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 0.5em;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-family: Lato;
+  text-align: center;
+  font-weight: normal;
+  font-size: 22px;
+  max-width: 700px;
+  line-height: 1.5;
+}
