@@ -38,7 +38,7 @@ const Tabs = (props) => {
           value={value}
           handleOnClick={handleOnClick}
           id={value}
-          key={value} 
+          key={value}
         />
       </ul>
 
