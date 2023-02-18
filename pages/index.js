@@ -10,7 +10,32 @@ import styles from "../styles/Home.module.css";
 import data from "../BasicData.json";
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+import clientPromise from "../lib/mongodb";
+
+export async function getServerSideProps() {
+  try {
+    // `await clientPromise` will use the default database passed in the MONGODB_URI
+    // get database
+    const client = await clientPromise;
+    const db = client.db("softball").collection("events");
+
+    // Execute queries against database
+    const response = await db.find({}, { _id: 0, name: 1, email: 1 }).toArray();
+    const result = JSON.parse(JSON.stringify(response));
+
+    return {
+      props: { result },
+    };
+  } catch (e) {
+    console.error(e);
+    return {
+      props: { error: "db-events-could-not-find" },
+    };
+  }
+}
+
+export default function Home(props) {
+  const eventData = props.result;
   return (
     <>
       <Head>
@@ -22,7 +47,7 @@ export default function Home() {
       <main className={styles.main}>
         <Title data={data.main} />
         <DisplayBasicInfo data={data.main} />
-        <DisplayEventInfo />
+        <DisplayEventInfo result={eventData} />
         <NewPlayerPage data={data.main} />
       </main>
     </>
