@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import Title from "../components/Title";
 import DisplayBasicInfo from "../components/BasicInfo";
 import DisplayEventInfo from "../components/Events/EventInfo";
 import NewPlayerPage from "../components/NewPlayerPage";
@@ -44,12 +43,9 @@ export default function Home(props) {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className={styles.main}>
-        <Title data={data.main} />
-        <DisplayBasicInfo data={data.main} />
-        <DisplayEventInfo result={eventData} />
-        <NewPlayerPage data={data.main} />
-      </main>
+      <DisplayBasicInfo data={data.main} />
+      <DisplayEventInfo result={eventData} />
+      <NewPlayerPage data={data.main} />
     </>
   );
 }
