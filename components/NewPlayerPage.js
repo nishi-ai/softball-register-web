@@ -3,8 +3,6 @@ import styled from "styled-components";
 import styles from "./Form.module.css";
 import AddPlayerForm from "../components/AddPlayerForm";
 
-const apiUrl = process.env.REACT_APP_SERVER_URL;
-
 function NewPlayerPage(props) {
   const [isCallLoading, setIsCallLoading] = useState(false);
   const [showNameErrorMessage, setShowNameErrorMessage] = useState(false);
@@ -14,7 +12,6 @@ function NewPlayerPage(props) {
 
   // add async to be able to switch the page on the right timing after registration
   async function addPlayerHandler(playerData) {
-    console.log("------", playerData);
     setIsCallLoading(true);
     setShowNameErrorMessage(false);
     setShowEmailErrorMessage(false);
@@ -23,7 +20,7 @@ function NewPlayerPage(props) {
     // add 'ok' result on index.js on server
     try {
       const fetchResult = await fetch(
-        `${apiUrl}/player/registration`,
+        "/api/add-players",
         // most API requires POST method to store data
         {
           // GET is default
@@ -40,10 +37,7 @@ function NewPlayerPage(props) {
       // handle the response, to get an access to the response data
       const response = await fetchResult.json();
       // console loged data
-      console.log("response json", response);
-      if (fetchResult.status === 500) {
-        console.log("response", response);
-      }
+      console.log("fetchResult", fetchResult);
       if (fetchResult.status === 200) {
         window.location = "/registered";
       }
@@ -53,7 +47,7 @@ function NewPlayerPage(props) {
       }
       // payload was not valid or something
       // put error message when name or email is missing
-      else if (response.validationErrors != null) {
+      else if (fetchResult.status === 422) {
         if (response.validationErrors.length >= 2) {
           console.log("----  name and email both are invalid");
           setShowNameErrorMessage(true);
