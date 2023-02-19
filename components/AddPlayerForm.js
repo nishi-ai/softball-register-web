@@ -1,6 +1,5 @@
 import { React } from "react";
-// directly access to reference cue DOM elements
-// import { Form, Button, Spinner } from 'react-bootstrap';
+
 import styles from "./Form.module.css";
 import useInput from "../hooks/use-input";
 
@@ -58,13 +57,13 @@ function AddPlayerForm(props) {
       noValidate
       onSubmit={submitHandler}
       validated={enteredNameIsValid && enteredEmailIsValid}
-      className='d-grid gap-2'
+      className='d-grid gap-3'
     >
-      <div class="form-group">
+      <div className='form-group'>
         <label htmlFor='playername'></label>
         <input
           type='name'
-          class="form-control"
+          className={`form-control ${styles.formInput}`}
           id='name'
           placeholder='Name'
           onChange={nameChangeHandler}
@@ -77,11 +76,11 @@ function AddPlayerForm(props) {
         )}
       </div>
 
-      <div class="form-group">
+      <div className='form-group'>
         <label htmlFor='email'></label>
         <input
           type='email'
-          class="form-control"
+          className={`form-control ${styles.formInput}`}
           id='email'
           placeholder='email@example.com'
           onChange={emailChangeHandler}
@@ -103,15 +102,6 @@ function AddPlayerForm(props) {
         className='btn btn-outline-warning'
         disabled={!formIsValid || props.callLoading}
       >
-        {/* {props.callLoading && (
-                    <Spinner
-                    as="span"
-                    animation="border"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                    />
-                )} */}
         <span>Register</span>
       </button>
     </form>

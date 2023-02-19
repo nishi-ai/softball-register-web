@@ -1,13 +1,12 @@
-
 .formContaier {
-    margin-bottom: 150px;
-    height: 100%;
-    padding: 40px 80px;
+  margin-bottom: 150px;
+  height: 100%;
+  padding: 60px 80px;
 }
 
 .registrationDesc {
-    white-space: pre-line;
-    margin: 12px 0;
+  white-space: pre-line;
+  margin: 12px 0;
 }
 
 #error {
@@ -30,4 +29,10 @@
 .errorText {
   color: #ffc15a;
   font-size: 18px;
+}
+
+input.formInput:focus {
+  border-color: #ffc15a;
+  box-shadow: 0 0 8px #ffc15a;
+  outline: 0 none;
 }
