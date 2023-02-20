@@ -1,0 +1,42 @@
+.title {
+  position: relative;
+  border-radius: 50%;
+}
+
+.image {
+  margin: 20px 0 50px 0;
+  width: 100%;
+  margin-bottom: 2;
+  border-radius: 50%;
+  transition: all 0.3s ease-in 0s;
+}
+
+.image:hover {
+  cursor: pointer;
+  box-shadow: inset 0 0 35px 0px rgba(0, 0, 0, 0.15),
+    inset 0 2px 1px 1px #2a324e, 0px 0px 12px 1px #ffc15a;
+}
+
+.titleOnImage {
+  position: absolute;
+  top: 20%;
+  left: -22%;
+  margin: 20px auto;
+  pointer-events: none;
+  font-family: "Italianno", cursive;
+  font-size: 16px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.teamName {
+  font-size: 45px;
+  width: max-content;
+  color: #ffc15a;
+}
+
+.softball {
+  font-size: 36px;
+  color: #ffc15a;
+}

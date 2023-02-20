@@ -1,0 +1,62 @@
+.tabs {
+  width: 100%;
+  height: auto;
+  min-height: 400px;
+  background: #1f2434;
+  padding: 2rem 1rem;
+  @media (max-width: 769px) {
+    padding: 2rem 0;
+  }
+}
+
+.nav {
+  width: 400px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.year {
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+  padding: 8px 0;
+  margin-right: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.year:hover {
+  transition: 0.4s;
+  opacity: 50%;
+  color: #1f2434;
+  background-color: #ffc15a;
+}
+
+.active {
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+  padding: 8px 0;
+  margin-right: 20px;
+  /* color: #fff; */
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 7px;
+  transition: 0.4s;
+  color: #1f2434;
+  background-color: #ffc15a;
+}
+
+.listContent {
+  list-style-type: none;
+}

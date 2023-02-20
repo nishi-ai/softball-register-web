@@ -1,0 +1,38 @@
+.formContaier {
+  margin-bottom: 150px;
+  height: 100%;
+  padding: 60px 80px;
+}
+
+.registrationDesc {
+  white-space: pre-line;
+  margin: 12px 0;
+}
+
+#error {
+  position: relative;
+  height: 100%;
+  padding: 10px;
+  margin: 100px;
+  width: 60%;
+  margin-top: 18px;
+  margin-bottom: 430px;
+  padding-top: 5px;
+  color: #ffc15a;
+  overflow: hidden;
+}
+
+#error h1 {
+  color: #ffc15a;
+}
+
+.errorText {
+  color: #ffc15a;
+  font-size: 18px;
+}
+
+input.formInput:focus {
+  border-color: #ffc15a;
+  box-shadow: 0 0 8px #ffc15a;
+  outline: 0 none;
+}

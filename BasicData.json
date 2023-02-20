@@ -1,0 +1,19 @@
+{
+  "main": {
+    "teamName": "CATS AND DOGS",
+    "sportName": "SOFTBALL",
+    "titleImage": "images/soft.png",
+    "title": "A Non-competitive Softball Game",
+    "description": "The rules are simple and non-competitive. Anyone of any gender and/or skill level can play with us. Kids can play too. We’ll look out for them. We encourage those who have never played before to show up because the worst that can happen is that you’ll have a good time. We have enough gloves for everyone.",
+    "registeration": "There isn't going to be any kind of registrations and\nyour email is only for sending upcoming games schedule.",
+    "images": ["soft1.jpeg", "soft2.jpeg", "soft3.jpeg", "score.jpg"],
+    "location": "Tempelhofer Feld",
+    "city": "Berlin"
+  },
+  "status": {
+    "success": "Successfully registered!",
+    "successDescription": "We sent you a confirmation email. In case you did not get any email from us, please check your spam box or reach out to us.",
+    "error": "Oops🥶, Something went wrong!",
+    "errorDescription": "We are working on fixing this, sorry for the inconvenience!"
+  }
+}

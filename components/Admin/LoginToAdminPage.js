@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import PasswordForm from "../components/PasswordForm";
+import PasswordForm from "../PasswordForm";
 import PlayerList from "./PlayerList";
-
-const apiUrl = process.env.REACT_APP_SERVER_URL;
 
 function LoginToAdminPage() {
   const [authorized, setAuthorized] = useState(false);
@@ -39,7 +37,7 @@ function LoginToAdminPage() {
 
   const getSuccessfulFechedData = async (password) => {
     setPassword(password);
-    const result = await fetch(`${apiUrl}/admin/players/`, {
+    const result = await fetch("/api/playerslist", {
       headers: { Authorization: `Token ${password}` },
     });
     let responseData = await result.json();
@@ -62,7 +60,6 @@ function LoginToAdminPage() {
 
   const getPlayersDataHandler = async (password) => {
     const adminPassword = password;
-    console.log("adminPassword", adminPassword);
 
     setIscallLoading(true);
     setShowPasswordErrorMessage(false);
@@ -70,31 +67,25 @@ function LoginToAdminPage() {
     try {
       await getSuccessfulFechedData(adminPassword);
     } catch (error) {
-      console.log(error);
       window.location = "/500";
     }
     setIscallLoading(false);
   };
-  // UseEffect content will disply in the first place one time.
-  // if some state is inside of array [] and updated, useEffect will be called again.
-  useEffect(async () => {
+  //   UseEffect content will disply in the first place one time.
+  //   if some state is inside of array [] and updated, useEffect will be called again.
+  useEffect(() => {
     const storedPassword = sessionStorage.getItem("storedPassword");
-    console.log(">>>", storedPassword);
     if (storedPassword) {
-      console.log(">>>effect called one time");
       try {
-        await getSuccessfulFechedData(storedPassword);
+        getSuccessfulFechedData(storedPassword);
       } catch (error) {
         console.log("error", error);
       }
     }
   }, []);
-  // called when this component is displayed.
-  // (every refreshing, it will show)
-  console.log(">>>called");
 
   return (
-    <section id='form'>
+    <div id='form'>
       {!authorized && (
         <PasswordForm
           iscallLoading={iscallLoading}
@@ -111,7 +102,7 @@ function LoginToAdminPage() {
           setPlayerSelectedAll={setPlayerSelectedAll}
         />
       )}
-    </section>
+    </div>
   );
 }
 
