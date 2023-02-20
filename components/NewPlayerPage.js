@@ -73,10 +73,8 @@ function NewPlayerPage(props) {
 
   return (
     <div className={styles.formContaier}>
-      {/* pass addPlayerHandler without () just pointing at a value to onAddPlayer */}
       <AddPlayerForm
-        // export functions to allow to use in a child component
-        isCallLoading={isCallLoading}
+        callLoading={isCallLoading}
         onAddPlayer={addPlayerHandler}
         showNameErrorMessage={showNameErrorMessage}
         showEmailErrorMessage={showEmailErrorMessage}
