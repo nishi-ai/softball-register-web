@@ -1,17 +1,14 @@
 import getDBClient from "../../lib/mongodb";
 
-import initMiddleware from "../../lib/init-middleware";
 import validateMiddleware from "../../lib/validate-middleware";
 import { check, validationResult } from "express-validator";
 
-const validateBody = initMiddleware(
-  validateMiddleware(
-    [
-      check("name").isString().isLength({ min: 2 }).trim(),
-      check("email").isEmail().trim(),
-    ],
-    validationResult
-  )
+const validateBody = validateMiddleware(
+  [
+    check("name").isString().isLength({ min: 2 }).trim(),
+    check("email").isEmail().trim(),
+  ],
+  validationResult
 );
 
 export default async function addPlayers(req, res) {
