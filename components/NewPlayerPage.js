@@ -36,8 +36,7 @@ function NewPlayerPage(props) {
       );
       // handle the response, to get an access to the response data
       const response = await fetchResult.json();
-      // console loged data
-      console.log("fetchResult", fetchResult);
+
       if (fetchResult.status === 200) {
         window.location = "/registered";
       }

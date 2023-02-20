@@ -20,7 +20,6 @@ export default async function getPlayersList(req, res) {
         const response = await db
           .find({}, { _id: 0, name: 1, email: 1 })
           .toArray();
-        console.log("result", response);
         res.status(200).json(response);
         // return here to make this if & if done and anything else goes to error 403
         return;
@@ -32,7 +31,6 @@ export default async function getPlayersList(req, res) {
       })
     );
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       error: "db-players-could-not-find",
       message: err,

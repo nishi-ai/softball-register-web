@@ -70,7 +70,6 @@ function PlayerList(props) {
       }
     } catch (error) {
       window.location = "/500";
-      console.log("error here:", error);
     }
   };
 

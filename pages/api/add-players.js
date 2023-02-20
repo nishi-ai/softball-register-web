@@ -12,12 +12,8 @@ const validateBody = validateMiddleware(
 );
 
 export default async function addPlayers(req, res) {
-  console.log("POST:");
-  console.log(req.body);
-
   await validateBody(req, res);
   const errors = validationResult(req);
-  console.log("errors", errors);
 
   if (!errors.isEmpty()) {
     return res.status(422).json({
@@ -39,7 +35,7 @@ export default async function addPlayers(req, res) {
       email: email,
       created_at: createdDate,
     });
-    console.log("result", result);
+
     res.status(200).json({
       player: { name: name, email: email, created_at: createdDate },
       message: "Player added",

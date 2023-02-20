@@ -29,8 +29,6 @@ function PasswordForm(props) {
     const passwordObject = {
       password: enteredPassword,
     };
-    console.log(">>>entered Password:", passwordObject.password);
-
     sessionStorage.setItem("storedPassword", passwordObject.password);
 
     props.getPlayersDataHandler(passwordObject.password);
