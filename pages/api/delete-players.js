@@ -16,7 +16,7 @@ export default async function deletePlayer(req, res) {
     console.log(err);
     res.status(500).json({
       error: "db-players-could-not-delete",
-      message: err,
+      message: err.message,
     });
   }
 }
