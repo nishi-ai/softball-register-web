@@ -17,8 +17,6 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import ClipboardCopy from "./ClipboardCopy";
 
-const apiUrl = process.env.REACT_APP_SERVER_URL;
-
 const headCells = [
   {
     id: "id",
