@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClipboard,
+  faClipboardCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
@@ -31,16 +35,12 @@ const ClipboardCopy = (props) => {
         <div>
           {isCopied ? (
             <FontAwesomeIcon
-              icon={["fas", "clipboard-check"]}
+              icon={faClipboardCheck}
+              color='#ffc15a'
               size='lg'
-              style='color:green'
             />
           ) : (
-            <FontAwesomeIcon
-              icon={["fas", "copy"]}
-              size='lg'
-              style='color:green'
-            />
+            <FontAwesomeIcon icon={faClipboard} color='#ffc15a' size='lg' />
           )}
         </div>
       </CopyToClipboard>
