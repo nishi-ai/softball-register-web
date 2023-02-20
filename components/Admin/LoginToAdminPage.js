@@ -35,7 +35,7 @@ function LoginToAdminPage() {
     setPlayersList(tempArray);
   };
 
-  const getSuccessfullFechedData = async (password) => {
+  const getSuccessfulFechedData = async (password) => {
     setPassword(password);
     const result = await fetch("/api/playerslist", {
       headers: { Authorization: `Token ${password}` },
@@ -65,7 +65,7 @@ function LoginToAdminPage() {
     setShowPasswordErrorMessage(false);
 
     try {
-      await getSuccessfullFechedData(adminPassword);
+      await getSuccessfulFechedData(adminPassword);
     } catch (error) {
       window.location = "/500";
     }
@@ -77,7 +77,7 @@ function LoginToAdminPage() {
     const storedPassword = sessionStorage.getItem("storedPassword");
     if (storedPassword) {
       try {
-        getSuccessfullFechedData(storedPassword);
+        getSuccessfulFechedData(storedPassword);
       } catch (error) {
         console.log("error", error);
       }
