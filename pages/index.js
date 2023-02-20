@@ -34,7 +34,6 @@ export async function getServerSideProps() {
 }
 
 export default function Home(props) {
-  const eventData = props.result;
   return (
     <>
       <Head>
@@ -47,7 +46,7 @@ export default function Home(props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <DisplayBasicInfo data={data.main} />
-      <DisplayEventInfo result={eventData} />
+      <DisplayEventInfo result={props} />
       <NewPlayerPage data={data.main} />
     </>
   );

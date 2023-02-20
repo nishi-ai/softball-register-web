@@ -76,3 +76,10 @@
 .year {
   font-size: 0.75rem;
 }
+
+.errorDescription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+}
