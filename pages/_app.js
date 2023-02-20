@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css"; // Import bootstrap CSS
 import "../styles/globals.css";
 import { useEffect } from "react";
-import Title from "../components/Title";
+import TitleWithLogo from "../components/TitleWithLogo";
 import styles from "../styles/Home.module.css";
 
 import data from "../BasicData.json";
@@ -13,7 +13,7 @@ function App({ Component, pageProps }) {
 
   return (
     <div className={styles.main}>
-      <Title data={data.main} />
+      <TitleWithLogo data={data.main} />
       <Component {...pageProps} />
     </div>
   );

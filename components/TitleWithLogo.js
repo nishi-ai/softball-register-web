@@ -3,10 +3,14 @@ import styled, { keyframes, css } from "styled-components";
 import styles from "./Title.module.css";
 import Image from "next/image";
 
-export default function Ttile(props) {
+export default function TitleWithLogo(props) {
+  const routeChange = () => {
+    window.location = "/";
+  };
+
   return (
     <div className={styles.title}>
-      <div className={styles.image}>
+      <div className={styles.image} onClick={routeChange}>
         <Image src='/soft.png' alt='Logo image' width={250} height={250} />
       </div>
       <div className={styles.titleOnImage}>
