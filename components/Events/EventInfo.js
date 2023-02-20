@@ -3,8 +3,8 @@ import EventCard from "./EventCard";
 import styles from "./Event.module.css";
 
 const DisplayEventInfo = (props) => {
-  const error = props.result.error;
-  const eventData = props.result.result;
+  const error = props.eventData.error;
+  const eventData = props.eventData;
   return (
     <div>
       <div className={styles.eventContainer}>

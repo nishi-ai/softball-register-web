@@ -21,14 +21,13 @@ export async function getServerSideProps() {
     // Execute queries against database
     const response = await db.find({}, { _id: 0, name: 1, email: 1 }).toArray();
     const result = JSON.parse(JSON.stringify(response));
-
     return {
       props: { result },
     };
   } catch (e) {
     console.error(e);
     return {
-      props: { error: "db-events-could-not-find" },
+      props: { result: { error: "db-events-could-not-find" } },
     };
   }
 }
@@ -46,7 +45,7 @@ export default function Home(props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <DisplayBasicInfo data={data.main} />
-      <DisplayEventInfo result={props} />
+      <DisplayEventInfo eventData={props.result} />
       <NewPlayerPage data={data.main} />
     </>
   );
