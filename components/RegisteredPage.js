@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-class RegisteredPage extends Component {
-  render() {
-    return (
-      <div id='registered'>
-        <h1>Successfully registered!</h1>
-      </div>
-    );
-  }
-}
+import styles from "./BasicInfo.module.css";
 
-export default RegisteredPage;
+export default function RegisteredPage(props) {
+  const { success, successDescription } = props.data;
+
+  return (
+    <div className={styles.statusContaier}>
+      <h2>{success}</h2>
+      <h3>{successDescription}</h3>
+    </div>
+  );
+}

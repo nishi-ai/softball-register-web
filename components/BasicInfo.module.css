@@ -26,3 +26,35 @@
   max-width: 700px;
   line-height: 1.5;
 }
+
+.statusContaier {
+  max-width: 700px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.statusContaier h2 {
+  letter-spacing: 0.2rem;
+  text-align: center;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 1.5;
+}
+
+.statusContaier h3 {
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.statusContaier h3 {
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+}
