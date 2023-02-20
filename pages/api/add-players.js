@@ -1,4 +1,4 @@
-import clientPromise from "../../lib/mongodb";
+import getDBClient from "../../lib/mongodb";
 
 import initMiddleware from "../../lib/init-middleware";
 import validateMiddleware from "../../lib/validate-middleware";
@@ -35,7 +35,7 @@ export default async function addPlayers(req, res) {
   // connect to the database and save the new incoming player
   // the collction will be created dynamically if it does not exist yet.
   try {
-    const client = await clientPromise;
+    const client = await getDBClient;
     const db = client.db("softball").collection("players");
     let result = await db.insertOne({
       name: name,

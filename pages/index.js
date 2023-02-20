@@ -9,13 +9,13 @@ import styles from "../styles/Home.module.css";
 import data from "../BasicData.json";
 const inter = Inter({ subsets: ["latin"] });
 
-import clientPromise from "../lib/mongodb";
+import getDBClient from "../lib/mongodb";
 
 export async function getServerSideProps() {
   try {
-    // `await clientPromise` will use the default database passed in the MONGODB_URI
+    // `await getDBClient` will use the default database passed in the MONGODB_URI
     // get database
-    const client = await clientPromise;
+    const client = await getDBClient;
     const db = client.db("softball").collection("events");
 
     // Execute queries against database

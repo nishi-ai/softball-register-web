@@ -1,11 +1,11 @@
-import clientPromise from "../../lib/mongodb";
+import getDBClient from "../../lib/mongodb";
 
 export default async function deletePlayer(req, res) {
   console.log("Here DESTROY PLAYER(S)");
   console.log("req.body:", req.body);
   const emailsArray = req.body;
   try {
-    const client = await clientPromise;
+    const client = await getDBClient;
     const db = client.db("softball").collection("players");
     const result = await db.deleteMany({
       email: { $in: emailsArray },

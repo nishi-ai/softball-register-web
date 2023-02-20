@@ -1,4 +1,4 @@
-import clientPromise from "../../lib/mongodb";
+import getDBClient from "../../lib/mongodb";
 
 export default async function getPlayersList(req, res) {
   try {
@@ -15,7 +15,7 @@ export default async function getPlayersList(req, res) {
       if (tokenPass === adminPassword) {
         // then good to go to players
         console.log("authenticated");
-        const client = await clientPromise;
+        const client = await getDBClient;
         const db = client.db("softball").collection("players");
         const response = await db
           .find({}, { _id: 0, name: 1, email: 1 })
