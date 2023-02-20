@@ -42,6 +42,7 @@ export default async function addPlayers(req, res) {
       playerID: result.insertedId,
     });
 
+    // TODO:
     // sendAdminEmail(name, email, createdDate.toDateString());
     // sendSignedUpEmail(email, name);
 
