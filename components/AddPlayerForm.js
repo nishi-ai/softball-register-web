@@ -2,6 +2,7 @@ import { React } from "react";
 
 import styles from "./Form.module.css";
 import useInput from "../hooks/use-input";
+import Loader from "./Loader";
 
 function AddPlayerForm(props) {
   // use hook useInput
@@ -53,60 +54,72 @@ function AddPlayerForm(props) {
   };
 
   return (
-    <form
-      noValidate
-      onSubmit={submitHandler}
-      validated={
-        enteredNameIsValid.toString() && enteredEmailIsValid.toString()
-      }
-      className='d-grid gap-3'
-    >
-      <div className='form-group'>
-        <label htmlFor='playername'></label>
-        <input
-          type='name'
-          className={`form-control ${styles.formInput}`}
-          id='name'
-          placeholder='Name'
-          onChange={nameChangeHandler}
-          onBlur={nameBlurHanlder}
-          value={enteredName}
-          ref={inputName}
+    <div>
+      {props.callLoading ? (
+        <Loader
+          as='span'
+          animation='border'
+          size='sm'
+          role='status'
+          aria-hidden='true'
         />
-        {(props.showNameErrorMessage || nameInputHasError) && (
-          <p className={styles.errorText}>Please enter at least 2 chars</p>
-        )}
-      </div>
-
-      <div className='form-group'>
-        <label htmlFor='email'></label>
-        <input
-          type='email'
-          className={`form-control ${styles.formInput}`}
-          id='email'
-          placeholder='email@example.com'
-          onChange={emailChangeHandler}
-          onBlur={emailBlurHanlder}
-          value={enteredEmail}
-          ref={inputEmail}
-        />
-        {(props.showEmailErrorMessage || EmailInputHasError) && (
-          <p className={styles.errorText}>Please enter a valid email with @.</p>
-        )}
-        {dupliEmailEntered && (
-          <p className={styles.errorText}>This email is already taken.</p>
-        )}
-      </div>
-
-      <button
-        variant='outline-warning'
-        type='submit'
-        className='btn btn-outline-warning'
-        disabled={!formIsValid || props.callLoading}
-      >
-        <span>Register</span>
-      </button>
-    </form>
+      ) : (
+        <form
+          noValidate
+          onSubmit={submitHandler}
+          validated={
+            enteredNameIsValid.toString() && enteredEmailIsValid.toString()
+          }
+          className='d-grid gap-3'
+        >
+          <div className='form-group'>
+            <label htmlFor='playername'></label>
+            <input
+              type='name'
+              className={`form-control ${styles.formInput}`}
+              id='name'
+              placeholder='Name'
+              onChange={nameChangeHandler}
+              onBlur={nameBlurHanlder}
+              value={enteredName}
+              ref={inputName}
+            />
+            {(props.showNameErrorMessage || nameInputHasError) && (
+              <p className={styles.errorText}>Please enter at least 2 chars</p>
+            )}
+          </div>
+          <div className='form-group'>
+            <label htmlFor='email'></label>
+            <input
+              type='email'
+              className={`form-control ${styles.formInput}`}
+              id='email'
+              placeholder='email@example.com'
+              onChange={emailChangeHandler}
+              onBlur={emailBlurHanlder}
+              value={enteredEmail}
+              ref={inputEmail}
+            />
+            {(props.showEmailErrorMessage || EmailInputHasError) && (
+              <p className={styles.errorText}>
+                Please enter a valid email with @.
+              </p>
+            )}
+            {dupliEmailEntered && (
+              <p className={styles.errorText}>This email is already taken.</p>
+            )}
+          </div>
+          <button
+            variant='outline-warning'
+            type='submit'
+            className='btn btn-outline-warning'
+            disabled={!formIsValid || props.callLoading}
+          >
+            <span>Register</span>
+          </button>
+        </form>
+      )}
+    </div>
   );
 }
 
