@@ -2,6 +2,7 @@ import getDBClient from "../../lib/mongodb";
 
 import validateMiddleware from "../../lib/validate-middleware";
 import { check, validationResult } from "express-validator";
+import { sendAdminEmail, sendSignedUpEmail } from "../../utils/email-helper";
 
 const validateBody = validateMiddleware(
   [
@@ -42,9 +43,8 @@ export default async function addPlayers(req, res) {
       playerID: result.insertedId,
     });
 
-    // TODO:
-    // sendAdminEmail(name, email, createdDate.toDateString());
-    // sendSignedUpEmail(email, name);
+    sendAdminEmail(name, email, createdDate.toDateString());
+    sendSignedUpEmail(email, name);
 
     // don't call next()
     // need to return something json because frontend expects to receive `json.
