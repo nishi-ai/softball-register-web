@@ -73,7 +73,7 @@
 .description:hover,
 .location:hover,
 .title:hover {
-  transition: all 0.6s cubic-bezier(0, 0, 0.23, 1);
+  transition: all 0.6s cubic-bezier(1, 0, 0.23, 1);
   background-position: 0%;
 }
 
