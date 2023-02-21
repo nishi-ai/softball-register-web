@@ -80,13 +80,6 @@ function PlayerList(props) {
           sx={{
             pl: { sm: 2 },
             pr: { xs: 1, sm: 1 },
-            ...(IsSelected && {
-              bgcolor: (theme) =>
-                alpha(
-                  theme.palette.primary.main,
-                  theme.palette.action.activatedOpacity
-                ),
-            }),
           }}
         >
           {IsSelected ? <ClipboardCopy emails={emailsArray} /> : null}
@@ -100,81 +93,79 @@ function PlayerList(props) {
         </Toolbar>
         <TableContainer>
           <Table sx={{ minWidth: "100%" }} aria-labelledby='tableTitle'>
-            <div className='col-md-12'>
-              <TableHead>
-                <TableRow>
-                  <TableCell padding='checkbox'>
-                    <Checkbox
-                      sx={{
+            <TableHead>
+              <TableRow>
+                <TableCell padding='checkbox'>
+                  <Checkbox
+                    sx={{
+                      color: "#ffc15a",
+                      "&.Mui-checked": {
                         color: "#ffc15a",
-                        "&.Mui-checked": {
-                          color: "#ffc15a",
-                        },
-                      }}
-                      onChange={(e) => onSelectAll(e)}
-                      inputProps={{
-                        "aria-label": "select all",
-                      }}
-                    />
+                      },
+                    }}
+                    onChange={(e) => onSelectAll(e)}
+                    inputProps={{
+                      "aria-label": "select all",
+                    }}
+                  />
+                </TableCell>
+                {headCells.map((headCell) => (
+                  <TableCell
+                    key={headCell.id}
+                    align={headCell.numeric ? "right" : "left"}
+                    padding={headCell.disablePadding ? "none" : "normal"}
+                    style={{ color: "white" }}
+                  >
+                    <TableSortLabel>{headCell.label}</TableSortLabel>
                   </TableCell>
-                  {headCells.map((headCell) => (
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {players.map((player, index) => {
+                return (
+                  <TableRow
+                    hover
+                    // onChange={(event) => onItemCheck(event, index)}
+                    role='checkbox'
+                    aria-checked={player.selected}
+                    tabIndex={-1}
+                    key={player.id}
+                    selected={player.selected}
+                  >
+                    <TableCell padding='checkbox'>
+                      <Checkbox
+                        sx={{
+                          color: "#ffc15a",
+                          "&.Mui-checked": {
+                            color: "#ffc15a",
+                          },
+                        }}
+                        onChange={(event) => onItemCheck(event, index)}
+                        checked={player.selected}
+                        inputProps={{
+                          "aria-labelledby": player.id,
+                        }}
+                      />
+                    </TableCell>
                     <TableCell
-                      key={headCell.id}
-                      align={headCell.numeric ? "right" : "left"}
-                      padding={headCell.disablePadding ? "none" : "normal"}
+                      component='th'
+                      id={player.id}
+                      scope='row'
                       style={{ color: "white" }}
                     >
-                      <TableSortLabel>{headCell.label}</TableSortLabel>
+                      {index + 1}
                     </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {players.map((player, index) => {
-                  return (
-                    <TableRow
-                      hover
-                      // onChange={(event) => onItemCheck(event, index)}
-                      role='checkbox'
-                      aria-checked={player.selected}
-                      tabIndex={-1}
-                      key={player.id}
-                      selected={player.selected}
-                    >
-                      <TableCell padding='checkbox'>
-                        <Checkbox
-                          sx={{
-                            color: "#ffc15a",
-                            "&.Mui-checked": {
-                              color: "#ffc15a",
-                            },
-                          }}
-                          onChange={(event) => onItemCheck(event, index)}
-                          checked={player.selected}
-                          inputProps={{
-                            "aria-labelledby": player.id,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell
-                        component='th'
-                        id={player.id}
-                        scope='row'
-                        style={{ color: "white" }}
-                      >
-                        {index + 1}
-                      </TableCell>
-                      <TableCell align='left' style={{ color: "white" }}>
-                        {player.name}
-                      </TableCell>
-                      <TableCell align='left' style={{ color: "white" }}>
-                        {player.email}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </div>
+                    <TableCell align='left' style={{ color: "white" }}>
+                      {player.name}
+                    </TableCell>
+                    <TableCell align='left' style={{ color: "white" }}>
+                      {player.email}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
           </Table>
         </TableContainer>
       </div>
