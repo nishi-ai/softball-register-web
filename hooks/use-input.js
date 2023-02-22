@@ -27,9 +27,7 @@ const useInput = (validateValue) => {
 
   // reset the touched state to false once submitted
   const reset = () => {
-    if (!hasError) {
-      setIsTouched(false);
-    }
+    setIsTouched(false);
   };
 
   // can be called from the components that use the hook

@@ -34,11 +34,13 @@ function NewPlayerPage(props) {
           },
         }
       );
+      console.log("fetchResult", fetchResult);
       // handle the response, to get an access to the response data
       const response = await fetchResult.json();
+      console.log("response", response);
 
       if (fetchResult.status === 200) {
-        window.location = "/registered";
+        // window.location = "/registered";
       }
       if (fetchResult.status === 409) {
         console.log("----  email is already taken");
