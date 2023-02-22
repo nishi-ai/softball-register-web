@@ -24,7 +24,7 @@ function AddPlayerForm(props) {
     valueChangeHandler: emailChangeHandler,
     inputBlurHanlder: emailBlurHanlder,
     reset: resetTouchedEmailField,
-  } = useInput((value) => value.includes("@"));
+  } = useInput((value) => value.includes("@") && value.includes("."));
 
   // to manage overall form validity
   const formIsValid = enteredNameIsValid && enteredEmailIsValid;
@@ -102,7 +102,7 @@ function AddPlayerForm(props) {
             />
             {(props.showEmailErrorMessage || EmailInputHasError) && (
               <p className={styles.errorText}>
-                Please enter a valid email with @.
+                Please enter a valid email with @ and your domain.
               </p>
             )}
             {dupliEmailEntered && (

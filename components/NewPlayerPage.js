@@ -61,7 +61,7 @@ function NewPlayerPage(props) {
       }
     } catch (error) {
       // The usage of fetch was something wrong OR json data from server was invalid
-      window.location = "/500";
+      // window.location = "/500";
       console.log("error here:", error);
     }
     // disable button in case there's an http request running
