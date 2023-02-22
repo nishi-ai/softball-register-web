@@ -67,9 +67,7 @@ function AddPlayerForm(props) {
         <form
           noValidate
           onSubmit={submitHandler}
-          validated={
-            enteredNameIsValid.toString() && enteredEmailIsValid.toString()
-          }
+          validated={`${enteredNameIsValid}` && `${enteredEmailIsValid}`}
           className='d-grid gap-3'
         >
           <div className='form-group'>
