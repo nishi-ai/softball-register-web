@@ -29,6 +29,9 @@ function AddPlayerForm(props) {
   // to manage overall form validity
   const formIsValid = enteredNameIsValid && enteredEmailIsValid;
 
+  const hasNameInputError = props.showNameErrorMessage || nameInputHasError;
+  const hasEmailInputError = props.showEmailErrorMessage || EmailInputHasError;
+
   // to manage dupli email input
   const dupliEmailEntered = props.showDupliEmailErrorMessage;
 
@@ -52,14 +55,10 @@ function AddPlayerForm(props) {
     resetTouchedNameField();
     resetTouchedEmailField();
   };
-  console.log("props.callLoading", props.callLoading);
-  console.log("enteredNameIsValid", enteredNameIsValid);
-  console.log("enteredEmailIsValid", enteredEmailIsValid);
-  console.log("enteredName", enteredName);
-  console.log("enteredEmail", enteredEmail);
+
   return (
     <div>
-      {/* {props.callLoading ? (
+      {props.callLoading ? (
         <Loader
           as='span'
           animation='border'
@@ -67,60 +66,60 @@ function AddPlayerForm(props) {
           role='status'
           aria-hidden='true'
         />
-      ) : ( */}
-      <form
-        noValidate
-        onSubmit={submitHandler}
-        validated={enteredNameIsValid && enteredEmailIsValid}
-        className='d-grid gap-3'
-      >
-        <div className='form-group'>
-          <label htmlFor='playername'></label>
-          <input
-            type='name'
-            className={`form-control ${styles.formInput}`}
-            id='name'
-            placeholder='Name'
-            onChange={nameChangeHandler}
-            onBlur={nameBlurHanlder}
-            value={enteredName}
-            ref={inputName}
-          />
-          {(props.showNameErrorMessage || nameInputHasError) && (
-            <p className={styles.errorText}>Please enter at least 2 chars</p>
-          )}
-        </div>
-        <div className='form-group'>
-          <label htmlFor='email'></label>
-          <input
-            type='email'
-            className={`form-control ${styles.formInput}`}
-            id='email'
-            placeholder='email@example.com'
-            onChange={emailChangeHandler}
-            onBlur={emailBlurHanlder}
-            value={enteredEmail}
-            ref={inputEmail}
-          />
-          {(props.showEmailErrorMessage || EmailInputHasError) && (
-            <p className={styles.errorText}>
-              Please enter a valid email with @ and your domain.
-            </p>
-          )}
-          {dupliEmailEntered && (
-            <p className={styles.errorText}>This email is already taken.</p>
-          )}
-        </div>
-        <button
-          variant='outline-warning'
-          type='submit'
-          className='btn btn-outline-warning'
-          disabled={!formIsValid || props.callLoading}
+      ) : (
+        <form
+          noValidate
+          onSubmit={submitHandler}
+          validated={formIsValid.toString()}
+          className='d-flex flex-column'
         >
-          <span>Register</span>
-        </button>
-      </form>
-      {/* )} */}
+          <div className='form-group'>
+            <label htmlFor='playername'></label>
+            <input
+              type='name'
+              className={`form-control ${styles.formControl}`}
+              id='name'
+              placeholder='Name'
+              onChange={nameChangeHandler}
+              onBlur={nameBlurHanlder}
+              value={enteredName}
+              ref={inputName}
+            />
+            {hasNameInputError && (
+              <p className={styles.errorText}>Please enter at least 2 chars</p>
+            )}
+          </div>
+          <div className='form-group'>
+            <label htmlFor='email'></label>
+            <input
+              type='email'
+              className={`form-control ${styles.formControl}`}
+              id='email'
+              placeholder='email@example.com'
+              onChange={emailChangeHandler}
+              onBlur={emailBlurHanlder}
+              value={enteredEmail}
+              ref={inputEmail}
+            />
+            {hasEmailInputError && (
+              <p className={styles.errorText}>
+                Please enter a valid email with @ and your domain.
+              </p>
+            )}
+            {dupliEmailEntered && !hasEmailInputError && (
+              <p className={styles.errorText}>This email is already taken.</p>
+            )}
+          </div>
+          <button
+            variant='outline-warning'
+            type='submit'
+            className='btn btn-outline-warning mt-4'
+            disabled={!formIsValid || props.callLoading}
+          >
+            <span>Register</span>
+          </button>
+        </form>
+      )}
     </div>
   );
 }

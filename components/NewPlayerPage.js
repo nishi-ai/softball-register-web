@@ -15,6 +15,7 @@ function NewPlayerPage(props) {
     setIsCallLoading(true);
     setShowNameErrorMessage(false);
     setShowEmailErrorMessage(false);
+    setShowDupliEmailErrorMessage(false);
     // send HTTP request to fetched URL, where you want to send
     // sendting data with post request should wait until all HTML pages will be exceuted
     // add 'ok' result on index.js on server
@@ -40,7 +41,7 @@ function NewPlayerPage(props) {
       console.log("response", response);
 
       if (fetchResult.status === 200) {
-        // window.location = "/registered";
+        window.location = "/registered";
       }
       if (fetchResult.status === 409) {
         console.log("----  email is already taken");
@@ -63,7 +64,7 @@ function NewPlayerPage(props) {
       }
     } catch (error) {
       // The usage of fetch was something wrong OR json data from server was invalid
-      // window.location = "/500";
+      window.location = "/500";
       console.log("error here:", error);
     }
     // disable button in case there's an http request running
