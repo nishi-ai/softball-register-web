@@ -43,8 +43,8 @@ export default async function addPlayers(req, res) {
       playerID: result.insertedId,
     });
 
-    sendAdminEmail(name, email, createdDate.toDateString());
-    sendSignedUpEmail(email, name);
+    await sendAdminEmail(name, email, createdDate.toDateString());
+    await sendSignedUpEmail(email, name);
 
     // don't call next()
     // need to return something json because frontend expects to receive `json.
