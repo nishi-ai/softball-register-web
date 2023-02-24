@@ -20,6 +20,7 @@
   background-size: 200% 100%;
   background-position: 100%;
 }
+
 .title {
   font-family: Lato;
   font-weight: bold;
@@ -32,6 +33,16 @@
   background-image: linear-gradient(to right, #ffc15a, #ffc15a 50%, white 50%);
   background-size: 200% 100%;
   background-position: 100%;
+}
+
+.subTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.emoji {
+  font-size: 32px;
+  padding-left: 6px;
 }
 
 .description {

@@ -6,7 +6,10 @@ export default function RegisteredPage(props) {
 
   return (
     <div className={styles.statusContaier}>
-      <h2>{success}</h2>
+      <div className={styles.subTitle}>
+        <h2>{success}</h2>
+        <span className={styles.emoji}>🎉</span>
+      </div>
       <h3>{successDescription}</h3>
     </div>
   );
