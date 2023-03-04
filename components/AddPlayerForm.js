@@ -16,6 +16,15 @@ function AddPlayerForm(props) {
     reset: resetTouchedNameField,
   } = useInput((value) => value.trim() !== "" && value.length >= 2);
 
+  const mailformat = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
+  const isMatched = (value) => {
+    if (value != "") {
+      const isValidated = value.match(mailformat);
+      if (isValidated != null) {
+        return true;
+      } else return false;
+    } else return false;
+  };
   const {
     value: enteredEmail,
     isValid: enteredEmailIsValid,
@@ -24,7 +33,7 @@ function AddPlayerForm(props) {
     valueChangeHandler: emailChangeHandler,
     inputBlurHanlder: emailBlurHanlder,
     reset: resetTouchedEmailField,
-  } = useInput((value) => value.includes("@") && value.includes("."));
+  } = useInput((value) => isMatched(value));
 
   // to manage overall form validity
   const formIsValid = enteredNameIsValid && enteredEmailIsValid;
