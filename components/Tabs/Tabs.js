@@ -47,7 +47,7 @@ const Tabs = (props) => {
               .map((item, index) => {
                 return (
                   <EventItem
-                    key={index}
+                    key={item._id}
                     date={new Date(item.date)}
                     result={item.result}
                   />
