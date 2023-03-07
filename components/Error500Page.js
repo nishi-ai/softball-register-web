@@ -6,7 +6,10 @@ export default function Error500Page(props) {
 
   return (
     <div className={styles.statusContaier}>
-      <h2>{error}</h2>
+      <div className={styles.subTitle}>
+        <h2>{error}</h2>
+        <span className={styles.emoji}>🥶</span>
+      </div>
       <h3>{errorDescription}</h3>
     </div>
   );

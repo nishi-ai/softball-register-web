@@ -25,7 +25,6 @@ const Tabs = (props) => {
     .reverse();
 
   const [value, setValue] = useState(0);
-
   const handleOnClick = (e, newValue) => {
     setValue(newValue);
   };
@@ -37,8 +36,6 @@ const Tabs = (props) => {
           years={years}
           value={value}
           handleOnClick={handleOnClick}
-          id={value}
-          key={value}
         />
       </ul>
 
@@ -47,10 +44,10 @@ const Tabs = (props) => {
           <TabPanel value={value} index={index} key={index}>
             {props.data
               .filter((item) => new Date(item.date).getFullYear() === year)
-              .map((item) => {
+              .map((item, index) => {
                 return (
                   <EventItem
-                    key={item.id}
+                    key={index}
                     date={new Date(item.date)}
                     result={item.result}
                   />

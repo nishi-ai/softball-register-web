@@ -9,6 +9,10 @@
   margin: 12px 0;
 }
 
+.formControl {
+  position: relative;
+}
+
 #error {
   position: relative;
   height: 100%;
@@ -28,11 +32,16 @@
 
 .errorText {
   color: #ffc15a;
-  font-size: 18px;
+  font-size: 12px;
+  position: absolute;
 }
 
 input.formInput:focus {
   border-color: #ffc15a;
   box-shadow: 0 0 8px #ffc15a;
   outline: 0 none;
+}
+
+.SubmitBtn {
+  margin-top: 30px;
 }

@@ -15,6 +15,7 @@ function NewPlayerPage(props) {
     setIsCallLoading(true);
     setShowNameErrorMessage(false);
     setShowEmailErrorMessage(false);
+    setShowDupliEmailErrorMessage(false);
     // send HTTP request to fetched URL, where you want to send
     // sendting data with post request should wait until all HTML pages will be exceuted
     // add 'ok' result on index.js on server
@@ -34,8 +35,10 @@ function NewPlayerPage(props) {
           },
         }
       );
+      console.log("fetchResult", fetchResult);
       // handle the response, to get an access to the response data
       const response = await fetchResult.json();
+      console.log("response", response);
 
       if (fetchResult.status === 200) {
         window.location = "/registered";

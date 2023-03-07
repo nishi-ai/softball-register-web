@@ -7,6 +7,18 @@
   font-family: Lato;
   margin-bottom: 100px;
   text-align: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #ffc15a, #ffc15a 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: 100%;
+}
+.icon {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #ffc15a, #ffc15a 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: 100%;
 }
 
 .title {
@@ -16,6 +28,21 @@
   font-size: 24px;
   letter-spacing: 0.5em;
   margin-bottom: 24px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #ffc15a, #ffc15a 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: 100%;
+}
+
+.subTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.emoji {
+  font-size: 32px;
+  padding-left: 6px;
 }
 
 .description {
@@ -25,6 +52,11 @@
   font-size: 22px;
   max-width: 700px;
   line-height: 1.5;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #ffc15a, #ffc15a 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: 100%;
 }
 
 .statusContaier {
@@ -41,14 +73,19 @@
   font-weight: normal;
   font-size: 32px;
   line-height: 1.5;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #ffc15a, #ffc15a 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: 100%;
 }
 
-.statusContaier h3 {
-  font-size: 18px;
-  line-height: 1.5;
-  max-width: 500px;
-  text-align: center;
-  margin: 0 auto;
+.statusContaier h2:hover,
+.description:hover,
+.location:hover,
+.title:hover {
+  transition: all 0.6s cubic-bezier(1, 0, 0.23, 1);
+  background-position: 0%;
 }
 
 .statusContaier h3 {
