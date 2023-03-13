@@ -6,6 +6,10 @@ export interface Events {
   result: object;
 }
 
+export interface EventsResult extends Events {
+  error?: string;
+}
+
 export interface Players {
   _id?: ObjectId | undefined;
   name: string;
@@ -22,10 +26,10 @@ export interface ProjectedDocumentForPlayer {
   email: string;
 }
 
-type Player = {
+export type Player = {
   name: string;
   email: string;
-  created_at: Date;
+  created_at?: Date;
 };
 
 export type PlayerData = {
@@ -33,3 +37,25 @@ export type PlayerData = {
   message: string;
   playerID: ObjectId;
 };
+
+export interface PlayersList extends Players {
+  id: number;
+  selected: boolean;
+}
+
+export interface BasicDataMain {
+  teamName: string;
+  sportName: string;
+  city: string;
+  description: string;
+  title: string;
+  location: string;
+  registeration: string;
+}
+
+export interface BasicDataStatus {
+  success?: string;
+  successDescription?: string;
+  error?: string;
+  errorDescription?: string;
+}
