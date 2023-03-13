@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import TabNavItems from "./TabNavItems";
 import EventItem from "../Events/EventItem";
 import styles from "./Tabs.module.css";
+import { Events } from "../../types/index";
 
-const TabPanel = (props) => {
+const TabPanel = (props: { children: any; value: number; index: number }) => {
   const { children, value, index } = props;
 
   return (
@@ -14,7 +15,7 @@ const TabPanel = (props) => {
   );
 };
 
-const Tabs = (props) => {
+const Tabs = (props: { data: Events[] }) => {
   const allyears = props.data.map((item) => new Date(item.date).getFullYear());
 
   const years = allyears
@@ -24,8 +25,8 @@ const Tabs = (props) => {
     .sort()
     .reverse();
 
-  const [value, setValue] = useState(0);
-  const handleOnClick = (e, newValue) => {
+  const [value, setValue] = useState<number>(0);
+  const handleOnClick = (newValue: number) => {
     setValue(newValue);
   };
 
