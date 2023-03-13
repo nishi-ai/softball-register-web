@@ -6,7 +6,11 @@ import NewPlayerPage from "../components/NewPlayerPage";
 
 import data from "../BasicData.json";
 import getDBClient from "../lib/mongodb";
-import { Events, ProjectedDocumentForEvent } from "../types/index";
+import {
+  Events,
+  EventsResult,
+  ProjectedDocumentForEvent,
+} from "../types/index";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
@@ -35,7 +39,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 };
 
-export default function Home(props: { result: Events }) {
+export default function Home(props: {
+  result: Events[];
+  resultState: EventsResult;
+}) {
   return (
     <>
       <Head>
@@ -48,7 +55,10 @@ export default function Home(props: { result: Events }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <DisplayBasicInfo data={data.main} />
-      <DisplayEventInfo eventData={props.result} />
+      <DisplayEventInfo
+        eventData={props.result}
+        errorState={props.resultState}
+      />
       <NewPlayerPage data={data.main} />
     </>
   );
