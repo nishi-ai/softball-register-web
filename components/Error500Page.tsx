@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import styles from "./BasicInfo.module.css";
+import { BasicDataStatus } from "../types/index";
 
-export default function Error500Page(props) {
+export default function Error500Page(props: { data: BasicDataStatus }) {
   const { error, errorDescription } = props.data;
 
   return (
