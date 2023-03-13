@@ -17,8 +17,9 @@ const StyledDiv = styled.div`
   cursor: pointer;
 `;
 
-const ClipboardCopy = (props) => {
-  const [isCopied, setIsCopied] = useState(false);
+
+const ClipboardCopy = (props: { emails: string; }) => {
+  const [isCopied, setIsCopied] = useState<boolean>(false);
   const emails = props.emails;
   // onCopyText function to toggle this state
   // The onCopy prop is run when the text is copied.
