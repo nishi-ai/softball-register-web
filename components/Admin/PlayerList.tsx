@@ -1,5 +1,4 @@
 import React from "react";
-import { alpha } from "@mui/material/styles";
 import {
   Box,
   Table,
@@ -16,6 +15,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ClipboardCopy from "./ClipboardCopy";
+import { PlayersList } from "../../types";
 
 const headCells = [
   {
@@ -35,18 +35,27 @@ const headCells = [
   },
 ];
 
-function PlayerList(props) {
+function PlayerList(props: {
+  playersList: PlayersList[];
+  password: string;
+  getPlayersDataHandler: (password: string) => Promise<void>;
+  setPlayerSelected: (index: number, value: boolean) => void;
+  setPlayerSelectedAll: (value: boolean) => void;
+}) {
   const players = props.playersList;
   const selectedPlayers = players.filter((player) => player.selected === true);
   const IsSelected = selectedPlayers.length > 0;
   const emailsArray = players.flatMap((e) => (e.selected ? [e.email] : []));
 
   // select all
-  const onSelectAll = (e) => {
+  const onSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
     props.setPlayerSelectedAll(e.target.checked);
   };
   // select items
-  const onItemCheck = (e, index) => {
+  const onItemCheck = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
     props.setPlayerSelected(index, e.target.checked);
   };
   const deleteSelectedPlayers = async () => {
@@ -69,13 +78,16 @@ function PlayerList(props) {
         alert("It could not be deleted.");
       }
     } catch (error) {
-      window.location = "/500";
+      window.location.href = "/500";
     }
   };
 
   return (
     <Box sx={{ width: "100%" }}>
-      <div sx={{ width: "100%", mb: 2 }} style={{ backgroundColor: "#1f2434" }}>
+      <div
+        data-sx={{ width: "100%", mb: 2 }}
+        style={{ backgroundColor: "#1f2434" }}
+      >
         <Toolbar
           sx={{
             pl: { sm: 2 },
@@ -113,7 +125,6 @@ function PlayerList(props) {
                   <TableCell
                     key={headCell.id}
                     align={headCell.numeric ? "right" : "left"}
-                    padding={headCell.disablePadding ? "none" : "normal"}
                     style={{ color: "white" }}
                   >
                     <TableSortLabel>{headCell.label}</TableSortLabel>
@@ -126,7 +137,6 @@ function PlayerList(props) {
                 return (
                   <TableRow
                     hover
-                    // onChange={(event) => onItemCheck(event, index)}
                     role='checkbox'
                     aria-checked={player.selected}
                     tabIndex={-1}
@@ -143,14 +153,11 @@ function PlayerList(props) {
                         }}
                         onChange={(event) => onItemCheck(event, index)}
                         checked={player.selected}
-                        inputProps={{
-                          "aria-labelledby": player.id,
-                        }}
                       />
                     </TableCell>
                     <TableCell
                       component='th'
-                      id={player.id}
+                      data-id={player.id}
                       scope='row'
                       style={{ color: "white" }}
                     >
