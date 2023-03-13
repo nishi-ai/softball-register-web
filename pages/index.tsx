@@ -1,25 +1,34 @@
+import { GetServerSideProps } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import DisplayBasicInfo from "../components/BasicInfo";
 import DisplayEventInfo from "../components/Events/EventInfo";
 import NewPlayerPage from "../components/NewPlayerPage";
-import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
 
 import data from "../BasicData.json";
-const inter = Inter({ subsets: ["latin"] });
-
 import getDBClient from "../lib/mongodb";
+import { ObjectId } from "mongodb";
 
-export async function getServerSideProps() {
+interface Events {
+  _id?: ObjectId | undefined;
+  date: string;
+  result: object;
+}
+
+interface ProjectedDocument {
+  date: string,
+  result: object
+}
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     // `await getDBClient` will use the default database passed in the MONGODB_URI
     // get database
     const client = await getDBClient;
-    const db = client.db("softball").collection("events");
+    const db = client.db("softball").collection<Events>("events");
 
     // Execute queries against database
-    const response = await db.find({}, { _id: 0, name: 1, email: 1 }).toArray();
+    const response = await db.find<ProjectedDocument>({}, {projection: { _id: 1, date: 1, result: 1 }} )
+    .sort({ date : -1})
+    .toArray();
     const result = JSON.parse(JSON.stringify(response));
     return {
       props: { result },
@@ -30,9 +39,9 @@ export async function getServerSideProps() {
       props: { result: { error: "db-events-could-not-find" } },
     };
   }
-}
+};
 
-export default function Home(props) {
+export default function Home(props: { result: Events; }) {
   return (
     <>
       <Head>

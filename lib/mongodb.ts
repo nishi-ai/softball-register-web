@@ -7,8 +7,8 @@ if (!process.env.MONGODB_URI) {
 const uri = process.env.MONGODB_URI;
 const options = {};
 
-let client;
-let getDBClient;
+let client: MongoClient;
+let getDBClient: Promise<MongoClient>;
 
 // no development mode. Develop in production mode
 client = new MongoClient(uri, options);
