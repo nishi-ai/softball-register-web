@@ -1,17 +1,19 @@
 import { useState } from "react";
-import styled from "styled-components";
 import styles from "./Form.module.css";
-import AddPlayerForm from "../components/AddPlayerForm";
+import AddPlayerForm from "./AddPlayerForm";
+import { BasicDataMain, Player } from "../types/index";
 
-function NewPlayerPage(props) {
-  const [isCallLoading, setIsCallLoading] = useState(false);
-  const [showNameErrorMessage, setShowNameErrorMessage] = useState(false);
-  const [showEmailErrorMessage, setShowEmailErrorMessage] = useState(false);
+function NewPlayerPage(props: { data: BasicDataMain }) {
+  const [isCallLoading, setIsCallLoading] = useState<boolean>(false);
+  const [showNameErrorMessage, setShowNameErrorMessage] =
+    useState<boolean>(false);
+  const [showEmailErrorMessage, setShowEmailErrorMessage] =
+    useState<boolean>(false);
   const [showDupliEmailErrorMessage, setShowDupliEmailErrorMessage] =
-    useState(false);
+    useState<boolean>(false);
 
   // add async to be able to switch the page on the right timing after registration
-  async function addPlayerHandler(playerData) {
+  async function addPlayerHandler(playerData: Player) {
     setIsCallLoading(true);
     setShowNameErrorMessage(false);
     setShowEmailErrorMessage(false);
@@ -41,7 +43,7 @@ function NewPlayerPage(props) {
       console.log("response", response);
 
       if (fetchResult.status === 200) {
-        window.location = "/registered";
+        window.location.href = "/registered";
       }
       if (fetchResult.status === 409) {
         console.log("----  email is already taken");
@@ -64,7 +66,7 @@ function NewPlayerPage(props) {
       }
     } catch (error) {
       // The usage of fetch was something wrong OR json data from server was invalid
-      window.location = "/500";
+      window.location.href = "/500";
       console.log("error here:", error);
     }
     // disable button in case there's an http request running

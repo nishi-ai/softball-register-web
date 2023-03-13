@@ -1,10 +1,16 @@
-import { React } from "react";
-
+import React from "react";
 import styles from "./Form.module.css";
 import useInput from "../hooks/use-input";
 import Loader from "./Loader";
+import { Player } from "../types";
 
-function AddPlayerForm(props) {
+function AddPlayerForm(props: {
+  callLoading: boolean;
+  onAddPlayer: (player: Player) => Promise<void>;
+  showNameErrorMessage: boolean;
+  showEmailErrorMessage: boolean;
+  showDupliEmailErrorMessage: boolean;
+}) {
   // use hook useInput
   const {
     value: enteredName,
@@ -14,10 +20,10 @@ function AddPlayerForm(props) {
     valueChangeHandler: nameChangeHandler,
     inputBlurHanlder: nameBlurHanlder,
     reset: resetTouchedNameField,
-  } = useInput((value) => value.trim() !== "" && value.length >= 2);
+  } = useInput((value: string) => value.trim() !== "" && value.length >= 2);
 
   const mailformat = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
-  const isMatched = (value) => {
+  const isMatched = (value: string) => {
     if (value != "") {
       const isValidated = value.match(mailformat);
       if (isValidated != null) {
@@ -33,7 +39,7 @@ function AddPlayerForm(props) {
     valueChangeHandler: emailChangeHandler,
     inputBlurHanlder: emailBlurHanlder,
     reset: resetTouchedEmailField,
-  } = useInput((value) => isMatched(value));
+  } = useInput((value: string) => isMatched(value));
 
   // to manage overall form validity
   const formIsValid = enteredNameIsValid && enteredEmailIsValid;
@@ -44,7 +50,7 @@ function AddPlayerForm(props) {
   // to manage dupli email input
   const dupliEmailEntered = props.showDupliEmailErrorMessage;
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     // prevent the browser default of senfing a request,  to allow to fully handle the submission
     event.preventDefault();
 
@@ -69,17 +75,17 @@ function AddPlayerForm(props) {
     <div>
       {props.callLoading ? (
         <Loader
-          as='span'
-          animation='border'
-          size='sm'
-          role='status'
+          data-as='span'
+          data-animation='border'
+          data-size='sm'
+          data-role='status'
           aria-hidden='true'
         />
       ) : (
         <form
           noValidate
           onSubmit={submitHandler}
-          validated={formIsValid.toString()}
+          data-validated={formIsValid.toString()}
           className='d-flex flex-column'
         >
           <div className='form-group'>
@@ -120,7 +126,7 @@ function AddPlayerForm(props) {
             )}
           </div>
           <button
-            variant='outline-warning'
+            data-variant='outline-warning'
             type='submit'
             className='btn btn-outline-warning mt-4'
             disabled={!formIsValid || props.callLoading}
