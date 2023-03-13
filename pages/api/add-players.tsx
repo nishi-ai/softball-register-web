@@ -1,8 +1,9 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import getDBClient from "../../lib/mongodb";
-
 import validateMiddleware from "../../lib/validate-middleware";
 import { check, validationResult } from "express-validator";
 import { sendAdminEmail, sendSignedUpEmail } from "../../utils/email-helper";
+import { PlayerData } from "../../types/index";
 
 const validateBody = validateMiddleware(
   [
@@ -12,7 +13,10 @@ const validateBody = validateMiddleware(
   validationResult
 );
 
-export default async function addPlayers(req, res) {
+export default async function addPlayers(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   await validateBody(req, res);
   const errors = validationResult(req);
 
@@ -21,7 +25,7 @@ export default async function addPlayers(req, res) {
       hasError: true,
       errorMessage: errors.array()[0].msg,
       validationErrors: errors.array(),
-    });
+    } as any);
   }
   const name = req.body.name;
   const email = req.body.email;
@@ -44,7 +48,7 @@ export default async function addPlayers(req, res) {
       player: { name: name, email: email, created_at: createdDate },
       message: "Player added",
       playerID: result.insertedId,
-    });
+    } as PlayerData);
 
     // don't call next()
     // need to return something json because frontend expects to receive `json.
@@ -58,7 +62,7 @@ export default async function addPlayers(req, res) {
         success: false,
         code: 11000,
         message: "duplicated-record",
-      });
+      } as any);
     }
     // some other errors
     return res.status(500).json({ message: JSON.stringify(err.message) });

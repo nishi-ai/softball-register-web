@@ -6,18 +6,8 @@ import NewPlayerPage from "../components/NewPlayerPage";
 
 import data from "../BasicData.json";
 import getDBClient from "../lib/mongodb";
-import { ObjectId } from "mongodb";
+import { Events, ProjectedDocumentForEvent } from "../types/index";
 
-interface Events {
-  _id?: ObjectId | undefined;
-  date: string;
-  result: object;
-}
-
-interface ProjectedDocument {
-  date: string,
-  result: object
-}
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     // `await getDBClient` will use the default database passed in the MONGODB_URI
@@ -26,9 +16,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const db = client.db("softball").collection<Events>("events");
 
     // Execute queries against database
-    const response = await db.find<ProjectedDocument>({}, {projection: { _id: 1, date: 1, result: 1 }} )
-    .sort({ date : -1})
-    .toArray();
+    const response = await db
+      .find<ProjectedDocumentForEvent>(
+        {},
+        { projection: { _id: 1, date: 1, result: 1 } }
+      )
+      .sort({ date: -1 })
+      .toArray();
     const result = JSON.parse(JSON.stringify(response));
     return {
       props: { result },
@@ -41,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 };
 
-export default function Home(props: { result: Events; }) {
+export default function Home(props: { result: Events }) {
   return (
     <>
       <Head>
