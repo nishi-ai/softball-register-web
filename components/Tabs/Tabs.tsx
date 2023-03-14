@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import TabNavItems from "./TabNavItems";
 import EventItem from "../Events/EventItem";
 import styles from "./Tabs.module.css";
-import { Events } from "../../types/index";
+import { Events } from "../../types";
 
 const TabPanel = (props: { children: any; value: number; index: number }) => {
   const { children, value, index } = props;
@@ -45,11 +45,11 @@ const Tabs = (props: { data: Events[] }) => {
           <TabPanel value={value} index={index} key={index}>
             {props.data
               .filter((item) => new Date(item.date).getFullYear() === year)
-              .map((item, index) => {
+              .map((item) => {
                 return (
                   <EventItem
-                    key={item._id}
-                    date={new Date(item.date)}
+                    key={item._id?.toString()}
+                    date={new Date(item.date) as Date}
                     result={item.result}
                   />
                 );

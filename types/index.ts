@@ -5,7 +5,7 @@ export interface Result {
   dogs: number;
 }
 export interface Events {
-  _id?: ObjectId | undefined;
+  _id?: ObjectId;
   date: string;
   result: Result;
 }
@@ -13,7 +13,7 @@ export interface EventsResult {
   error: string;
 }
 export interface Players {
-  _id?: ObjectId | undefined;
+  _id?: ObjectId;
   name: string;
   email: string;
 }

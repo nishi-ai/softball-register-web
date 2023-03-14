@@ -6,17 +6,23 @@ import NewPlayerPage from "../components/NewPlayerPage";
 
 import data from "../BasicData.json";
 import getDBClient from "../lib/mongodb";
-import {
-  Events,
-  EventsResult,
-  ProjectedDocumentForEvent,
-} from "../types/index";
+import { Events, EventsResult, ProjectedDocumentForEvent } from "../types";
 
-export const getServerSideProps: GetServerSideProps = async () => {
+type EventsProps = {
+  result?: Events[];
+};
+
+type EventsError = {
+  resultError?: string;
+};
+
+export const getServerSideProps: GetServerSideProps<
+  EventsProps | EventsError
+> = async () => {
   try {
     // `await getDBClient` will use the default database passed in the MONGODB_URI
     // get database
-    const client = await getDBClient;
+    const client = await getDBClient();
     const db = client.db("softball").collection<Events>("events");
 
     // Execute queries against database
@@ -34,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   } catch (e) {
     console.error(e);
     return {
-      props: { resultError: { error: "db-events-could-not-find" } },
+      props: { resultError: "db-events-could-not-find" },
     };
   }
 };
@@ -63,3 +69,10 @@ export default function Home(props: {
     </>
   );
 }
+
+const myFunc = (index: number) => {
+  if (index < 0) return undefined;
+  return 5;
+};
+
+const a = myFunc(0);

@@ -41,9 +41,10 @@ function LoginToAdminPage() {
     const result = await fetch("/api/playerslist", {
       headers: { Authorization: `Token ${password}` },
     });
-    let responseData = await result.json();
+    let responseData: PlayersList[] = await result.json();
+
     if (result.status === 200) {
-      responseData = responseData.map((item: PlayersList, index: number) => {
+      responseData = responseData.map((item, index) => {
         return {
           ...item,
           id: index + 1,

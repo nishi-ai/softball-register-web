@@ -1,7 +1,7 @@
 import React from "react";
 import EventCard from "./EventCard";
 import styles from "./Event.module.css";
-import { Events, EventsResult } from "../../types/index";
+import { Events, EventsResult } from "../../types";
 
 const DisplayEventInfo = (props: {
   eventData: Events[];

@@ -1,8 +1,9 @@
 import React from "react";
 import EventDate from "./EventDate";
 import styles from "./Event.module.css";
+import { Result } from "../../types";
 
-const EventItem = (props: any) => {
+const EventItem = (props: { date: Date; result: Result }) => {
   const { date, result } = props;
   return (
     <li>
