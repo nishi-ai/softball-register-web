@@ -3,7 +3,7 @@ import getDBClient from "../../lib/mongodb";
 import validateMiddleware from "../../lib/validate-middleware";
 import { check, validationResult } from "express-validator";
 import { sendAdminEmail, sendSignedUpEmail } from "../../utils/email-helper";
-import { PlayerData } from "../../types/index";
+import { PlayerData, Player } from "../../types";
 
 const validateBody = validateMiddleware(
   [
@@ -25,7 +25,7 @@ export default async function addPlayers(
       hasError: true,
       errorMessage: errors.array()[0].msg,
       validationErrors: errors.array(),
-    } as any);
+    });
   }
   const name = req.body.name;
   const email = req.body.email;
@@ -33,13 +33,13 @@ export default async function addPlayers(
   // connect to the database and save the new incoming player
   // the collction will be created dynamically if it does not exist yet.
   try {
-    const client = await getDBClient;
+    const client = await getDBClient();
     const db = client.db("softball").collection("players");
     let result = await db.insertOne({
       name: name,
       email: email,
       created_at: createdDate,
-    });
+    } as Player);
 
     await sendAdminEmail(name, email, createdDate.toDateString());
     await sendSignedUpEmail(email, name);
@@ -62,7 +62,7 @@ export default async function addPlayers(
         success: false,
         code: 11000,
         message: "duplicated-record",
-      } as any);
+      });
     }
     // some other errors
     return res.status(500).json({ message: JSON.stringify(err.message) });

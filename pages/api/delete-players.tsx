@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import getDBClient from "../../lib/mongodb";
-import { Players } from "../../types/index";
+import { Players } from "../../types";
 
 export default async function deletePlayer(
   req: NextApiRequest,
@@ -8,7 +8,7 @@ export default async function deletePlayer(
 ) {
   const emailsArray = req.body;
   try {
-    const client = await getDBClient;
+    const client = await getDBClient();
     const db = client.db("softball").collection<Players>("players");
     const result = await db.deleteMany({
       email: { $in: emailsArray },

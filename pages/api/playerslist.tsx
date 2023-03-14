@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import getDBClient from "../../lib/mongodb";
-import { Players, ProjectedDocumentForPlayer } from "../../types/index";
+import { Players, ProjectedDocumentForPlayer } from "../../types";
 
 export default async function getPlayersList(
   req: NextApiRequest,
@@ -16,7 +16,7 @@ export default async function getPlayersList(
       // get token password from frontend
       if (tokenPass === adminPassword) {
         // then good to go to players
-        const client = await getDBClient;
+        const client = await getDBClient();
         const db = client.db("softball").collection<Players>("players");
         const response = await db
           .find<ProjectedDocumentForPlayer>(
