@@ -1,26 +1,26 @@
 import { ObjectId } from "mongodb";
 
+export interface Result {
+  cats: number;
+  dogs: number;
+}
 export interface Events {
   _id?: ObjectId | undefined;
   date: string;
-  result: object;
+  result: Result;
 }
-
 export interface EventsResult {
   error: string;
 }
-
 export interface Players {
   _id?: ObjectId | undefined;
   name: string;
   email: string;
 }
-
 export interface ProjectedDocumentForEvent {
   date: string;
-  result: object;
+  result: Result;
 }
-
 export interface ProjectedDocumentForPlayer {
   name: string;
   email: string;
