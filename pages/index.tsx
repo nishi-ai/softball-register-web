@@ -69,10 +69,3 @@ export default function Home(props: {
     </>
   );
 }
-
-const myFunc = (index: number) => {
-  if (index < 0) return undefined;
-  return 5;
-};
-
-const a = myFunc(0);

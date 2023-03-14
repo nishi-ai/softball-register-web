@@ -86,8 +86,7 @@ function PlayerList(props: {
   return (
     <Box sx={{ width: "100%" }}>
       <div
-        data-sx={{ width: "100%", mb: 2 }}
-        style={{ backgroundColor: "#1f2434" }}
+        style={{ backgroundColor: "#1f2434", width: "100%", marginBottom: 2 }}
       >
         <Toolbar
           sx={{
