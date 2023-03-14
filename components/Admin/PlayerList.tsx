@@ -46,6 +46,7 @@ function PlayerList(props: {
   const selectedPlayers = players.filter((player) => player.selected === true);
   const IsSelected = selectedPlayers.length > 0;
   const emailsArray = players.flatMap((e) => (e.selected ? [e.email] : []));
+  const stringemails = emailsArray.join(",");
 
   // select all
   const onSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +95,7 @@ function PlayerList(props: {
             pr: { xs: 1, sm: 1 },
           }}
         >
-          {IsSelected ? <ClipboardCopy emails={emailsArray} /> : null}
+          {IsSelected ? <ClipboardCopy emails={stringemails} /> : null}
           {IsSelected ? (
             <Tooltip title='Delete'>
               <IconButton onClick={() => deleteSelectedPlayers()}>
