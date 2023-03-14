@@ -34,14 +34,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
   } catch (e) {
     console.error(e);
     return {
-      props: { result: { error: "db-events-could-not-find" } },
+      props: { resultError: { error: "db-events-could-not-find" } },
     };
   }
 };
 
 export default function Home(props: {
   result: Events[];
-  resultState: EventsResult;
+  resultError: EventsResult;
 }) {
   return (
     <>
@@ -57,7 +57,7 @@ export default function Home(props: {
       <DisplayBasicInfo data={data.main} />
       <DisplayEventInfo
         eventData={props.result}
-        errorState={props.resultState}
+        errorState={props.resultError}
       />
       <NewPlayerPage data={data.main} />
     </>

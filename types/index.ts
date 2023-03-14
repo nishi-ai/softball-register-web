@@ -6,8 +6,8 @@ export interface Events {
   result: object;
 }
 
-export interface EventsResult extends Events {
-  error?: string;
+export interface EventsResult {
+  error: string;
 }
 
 export interface Players {

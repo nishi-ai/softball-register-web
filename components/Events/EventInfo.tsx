@@ -7,7 +7,12 @@ const DisplayEventInfo = (props: {
   eventData: Events[];
   errorState: EventsResult;
 }) => {
-  const error = props.errorState?.error;
+  // when union types => eventData: Events[] | EventsResult
+  // let error: string | undefined
+  // if (!Array.isArray(props.eventData) && props.eventData.error) {
+  //   error = props.eventData.error
+  // }
+  const error = props.errorState;
   const eventData = props.eventData;
   return (
     <div>
