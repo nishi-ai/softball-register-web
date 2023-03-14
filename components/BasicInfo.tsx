@@ -5,7 +5,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 import styles from "./BasicInfo.module.css";
-import { BasicDataMain } from "../types/index";
+import { BasicDataMain } from "../types";
 
 export default function DisplayBasicInfo(props: { data: BasicDataMain }) {
   const { description, title, location } = props.data;

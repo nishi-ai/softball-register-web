@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Form.module.css";
 import AddPlayerForm from "./AddPlayerForm";
-import { BasicDataMain, Player } from "../types/index";
+import { BasicDataMain, Player } from "../types";
 
 function NewPlayerPage(props: { data: BasicDataMain }) {
   const [isCallLoading, setIsCallLoading] = useState<boolean>(false);

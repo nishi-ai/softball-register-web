@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Title.module.css";
 import Image from "next/image";
-import { BasicDataMain } from "../types/index";
+import { BasicDataMain } from "../types";
 
 export default function TitleWithLogo(props: { data: BasicDataMain }) {
   const { teamName, sportName, city } = props.data;
