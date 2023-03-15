@@ -1,12 +1,13 @@
-import { React } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 import styles from "./BasicInfo.module.css";
+import { BasicDataMain } from "../types";
 
-export default function DisplayBasicInfo(props) {
+export default function DisplayBasicInfo(props: { data: BasicDataMain }) {
   const { description, title, location } = props.data;
 
   return (

@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 
 import PasswordForm from "../PasswordForm";
 import PlayerList from "./PlayerList";
+import { PlayersList } from "../../types";
 
 function LoginToAdminPage() {
-  const [authorized, setAuthorized] = useState(false);
-  const [iscallLoading, setIscallLoading] = useState(false);
+  const [authorized, setAuthorized] = useState<boolean>(false);
+  const [iscallLoading, setIscallLoading] = useState<boolean>(false);
   const [showPasswordErrorMessage, setShowPasswordErrorMessage] =
-    useState(false);
-  const [playersList, setPlayersList] = useState([]);
-  const [password, setPassword] = useState("");
+    useState<boolean>(false);
+  const [playersList, setPlayersList] = useState<PlayersList[]>([]);
+  const [password, setPassword] = useState<string>("");
 
   // create selected players list
-  const setPlayerSelected = (index, isSelected) => {
+  const setPlayerSelected = (index: number, isSelected: boolean) => {
     // create a temporary playerlist to make sure not to change the original.
     const tempArray = playersList.map((player) => {
       return {
@@ -25,7 +26,7 @@ function LoginToAdminPage() {
   };
 
   // select all
-  const setPlayerSelectedAll = (isSelected) => {
+  const setPlayerSelectedAll = (isSelected: boolean) => {
     const tempArray = playersList.map((player) => {
       return {
         ...player,
@@ -35,12 +36,13 @@ function LoginToAdminPage() {
     setPlayersList(tempArray);
   };
 
-  const getSuccessfulFechedData = async (password) => {
+  const getSuccessfulFechedData = async (password: string) => {
     setPassword(password);
     const result = await fetch("/api/playerslist", {
       headers: { Authorization: `Token ${password}` },
     });
-    let responseData = await result.json();
+    let responseData: PlayersList[] = await result.json();
+
     if (result.status === 200) {
       responseData = responseData.map((item, index) => {
         return {
@@ -58,7 +60,7 @@ function LoginToAdminPage() {
     }
   };
 
-  const getPlayersDataHandler = async (password) => {
+  const getPlayersDataHandler = async (password: string) => {
     const adminPassword = password;
 
     setIscallLoading(true);
@@ -67,7 +69,7 @@ function LoginToAdminPage() {
     try {
       await getSuccessfulFechedData(adminPassword);
     } catch (error) {
-      window.location = "/500";
+      window.location.href = "/500";
     }
     setIscallLoading(false);
   };

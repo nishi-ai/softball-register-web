@@ -1,19 +1,19 @@
 import React from "react";
-import styled from "styled-components";
-
 import EventDate from "./EventDate";
 import styles from "./Event.module.css";
+import { Result } from "../../types";
 
-const EventItem = (props) => {
+const EventItem = (props: { date: Date; result: Result }) => {
+  const { date, result } = props;
   return (
     <li>
       <div className={styles.card}>
-        <EventDate date={props.date} />
+        <EventDate date={date} />
         <div className={styles.description}>
           <div className={styles.result}>
-            {!props.result
+            {!result
               ? "Upcoming..."
-              : `Cats ${props.result.cats} vs Dogs ${props.result.dogs}`}
+              : `Cats ${result.cats} vs Dogs ${result.dogs}`}
           </div>
         </div>
       </div>

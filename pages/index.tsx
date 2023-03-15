@@ -1,25 +1,38 @@
+import { GetServerSideProps } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import DisplayBasicInfo from "../components/BasicInfo";
 import DisplayEventInfo from "../components/Events/EventInfo";
 import NewPlayerPage from "../components/NewPlayerPage";
-import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
 
 import data from "../BasicData.json";
-const inter = Inter({ subsets: ["latin"] });
-
 import getDBClient from "../lib/mongodb";
+import { Events, EventsResult, ProjectedDocumentForEvent } from "../types";
 
-export async function getServerSideProps() {
+type EventsProps = {
+  result?: Events[];
+};
+
+type EventsError = {
+  resultError?: string;
+};
+
+export const getServerSideProps: GetServerSideProps<
+  EventsProps | EventsError
+> = async () => {
   try {
     // `await getDBClient` will use the default database passed in the MONGODB_URI
     // get database
-    const client = await getDBClient;
-    const db = client.db("softball").collection("events");
+    const client = await getDBClient();
+    const db = client.db("softball").collection<Events>("events");
 
     // Execute queries against database
-    const response = await db.find({}, { _id: 0, name: 1, email: 1 }).toArray();
+    const response = await db
+      .find<ProjectedDocumentForEvent>(
+        {},
+        { projection: { _id: 1, date: 1, result: 1 } }
+      )
+      .sort({ date: -1 })
+      .toArray();
     const result = JSON.parse(JSON.stringify(response));
     return {
       props: { result },
@@ -27,12 +40,15 @@ export async function getServerSideProps() {
   } catch (e) {
     console.error(e);
     return {
-      props: { result: { error: "db-events-could-not-find" } },
+      props: { resultError: "db-events-could-not-find" },
     };
   }
-}
+};
 
-export default function Home(props) {
+export default function Home(props: {
+  result: Events[];
+  resultError: EventsResult;
+}) {
   return (
     <>
       <Head>
@@ -45,7 +61,10 @@ export default function Home(props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <DisplayBasicInfo data={data.main} />
-      <DisplayEventInfo eventData={props.result} />
+      <DisplayEventInfo
+        eventData={props.result}
+        errorState={props.resultError}
+      />
       <NewPlayerPage data={data.main} />
     </>
   );

@@ -1,8 +1,9 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import getDBClient from "../../lib/mongodb";
-
 import validateMiddleware from "../../lib/validate-middleware";
 import { check, validationResult } from "express-validator";
 import { sendAdminEmail, sendSignedUpEmail } from "../../utils/email-helper";
+import { PlayerData, Player } from "../../types";
 
 const validateBody = validateMiddleware(
   [
@@ -12,7 +13,10 @@ const validateBody = validateMiddleware(
   validationResult
 );
 
-export default async function addPlayers(req, res) {
+export default async function addPlayers(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   await validateBody(req, res);
   const errors = validationResult(req);
 
@@ -29,13 +33,13 @@ export default async function addPlayers(req, res) {
   // connect to the database and save the new incoming player
   // the collction will be created dynamically if it does not exist yet.
   try {
-    const client = await getDBClient;
+    const client = await getDBClient();
     const db = client.db("softball").collection("players");
     let result = await db.insertOne({
       name: name,
       email: email,
       created_at: createdDate,
-    });
+    } as Player);
 
     await sendAdminEmail(name, email, createdDate.toDateString());
     await sendSignedUpEmail(email, name);
@@ -44,7 +48,7 @@ export default async function addPlayers(req, res) {
       player: { name: name, email: email, created_at: createdDate },
       message: "Player added",
       playerID: result.insertedId,
-    });
+    } as PlayerData);
 
     // don't call next()
     // need to return something json because frontend expects to receive `json.

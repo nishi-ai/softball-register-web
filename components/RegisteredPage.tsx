@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import styles from "./BasicInfo.module.css";
+import { BasicDataStatus } from "../types";
 
-export default function RegisteredPage(props) {
+export default function RegisteredPage(props: { data: BasicDataStatus }) {
   const { success, successDescription } = props.data;
 
   return (

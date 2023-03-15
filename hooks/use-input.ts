@@ -1,26 +1,26 @@
 import { useRef, useState } from "react";
 
-// check name and emai are valid or not
-const useInput = (validateValue) => {
+// check name and emai are valid or not(value: boolean) => void
+const useInput = (validateValue: any) => {
   // whenever one of these states changes, this component function gets re-rendered
-  const [enteredValue, setEnteredValue] = useState("");
+  const [enteredValue, setEnteredValue] = useState<string>("");
 
   // set input field was touched, so the error message can be already shown before submitting and prevent not show before entering input
-  const [isTouched, setIsTouched] = useState(false);
+  const [isTouched, setIsTouched] = useState<boolean>(false);
 
   const valueIsValid = validateValue(enteredValue);
 
   // once submitted clicked, all inputs are treated as touched, whatever they are valid or not
   const hasError = !valueIsValid && isTouched;
 
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const valueChangeHandler = (e) => {
-    setEnteredValue(inputRef.current.value);
+  const valueChangeHandler = () => {
+    setEnteredValue(inputRef.current!.value);
   };
 
   // prevent input from losing and show errors at every editting
-  const inputBlurHanlder = (e) => {
+  const inputBlurHanlder = () => {
     // input field is touched once
     setIsTouched(true);
   };

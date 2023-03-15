@@ -1,10 +1,13 @@
-import { React } from "react";
-
+import React from "react";
 import styles from "./Form.module.css";
 import useInput from "../hooks/use-input";
 import Loader from "./Loader";
 
-function PasswordForm(props) {
+function PasswordForm(props: {
+  iscallLoading: boolean;
+  getPlayersDataHandler: (password: string) => Promise<void>;
+  showPasswordErrorMessage: boolean;
+}) {
   // use hook useInput
   const {
     value: enteredPassword,
@@ -13,12 +16,12 @@ function PasswordForm(props) {
     valueChangeHandler: passwordChangeHandler,
     inputBlurHanlder: passwordBlurHanlder,
     reset: resetTouchedPasswordField,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput((value: string) => value.trim() !== "");
 
   // to manage overall form validity
   const formIsValid = enteredPasswordIsValid;
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     // prevent the browser default of senfing a request,  to allow to fully handle the submission
     event.preventDefault();
 
@@ -40,17 +43,17 @@ function PasswordForm(props) {
     <div className={styles.formContaier}>
       {props.iscallLoading ? (
         <Loader
-          as='span'
-          animation='border'
-          size='sm'
-          role='status'
+          data-as='span'
+          data-animation='border'
+          data-size='sm'
+          data-role='status'
           aria-hidden='true'
         />
       ) : (
         <form
           noValidate
           onSubmit={submitHandler}
-          validated={formIsValid.toString()}
+          data-validated={formIsValid.toString()}
           className='d-grid gap-3'
         >
           <div className='form-group'>
@@ -70,7 +73,7 @@ function PasswordForm(props) {
             )}
           </div>
           <button
-            variant='outline-warning'
+            data-variant='outline-warning'
             type='submit'
             disabled={!formIsValid || props.iscallLoading}
             className='btn btn-outline-warning'

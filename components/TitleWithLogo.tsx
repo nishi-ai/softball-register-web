@@ -1,11 +1,12 @@
 import React from "react";
-import styled, { keyframes, css } from "styled-components";
 import styles from "./Title.module.css";
 import Image from "next/image";
+import { BasicDataMain } from "../types";
 
-export default function TitleWithLogo(props) {
+export default function TitleWithLogo(props: { data: BasicDataMain }) {
+  const { teamName, sportName, city } = props.data;
   const routeChange = () => {
-    window.location = "/";
+    window.location.href = "/";
   };
 
   return (
@@ -14,9 +15,9 @@ export default function TitleWithLogo(props) {
         <Image src='/soft.png' alt='Logo image' width={250} height={250} />
       </div>
       <div className={styles.titleOnImage}>
-        <h1 className={styles.teamName}>{props.data.teamName}</h1>
-        <h1 className={styles.softball}>{props.data.sportName}</h1>
-        <h3>{props.data.city}</h3>
+        <h1 className={styles.teamName}>{teamName}</h1>
+        <h1 className={styles.softball}>{sportName}</h1>
+        <h3>{city}</h3>
       </div>
     </div>
   );
