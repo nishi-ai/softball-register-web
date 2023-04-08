@@ -10,7 +10,7 @@
 }
 
 .nav {
-  width: 400px;
+  /* width: 400px; */
   padding: 0;
   margin: 0;
   display: flex;
@@ -21,38 +21,23 @@
 
 .year {
   display: inline-block;
-  width: 25%;
   text-align: center;
-  padding: 8px 0;
-  margin-right: 20px;
+  padding: 5px 10px;
+  margin: 6px;
   color: #fff;
   text-decoration: none;
   font-size: 23px;
   font-weight: bold;
   cursor: pointer;
   border-radius: 7px;
+  transition: 0.4s;
 }
 
 .year:hover {
-  transition: 0.4s;
   opacity: 50%;
-  color: #1f2434;
-  background-color: #ffc15a;
 }
 
 .active {
-  display: inline-block;
-  width: 25%;
-  text-align: center;
-  padding: 8px 0;
-  margin-right: 20px;
-  /* color: #fff; */
-  text-decoration: none;
-  font-size: 23px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 7px;
-  transition: 0.4s;
   color: #1f2434;
   background-color: #ffc15a;
 }
