@@ -1,12 +1,13 @@
 .formContaier {
   margin-bottom: 150px;
   height: 100%;
-  padding: 60px 80px;
+  max-width: 350px;
 }
 
 .registrationDesc {
   white-space: pre-line;
   margin: 12px 0;
+  text-align: center;
 }
 
 .formControl {
