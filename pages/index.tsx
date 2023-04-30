@@ -7,6 +7,7 @@ import NewPlayerPage from "../components/NewPlayerPage";
 import data from "../BasicData.json";
 import getDBClient from "../lib/mongodb";
 import { Events, EventsResult, ProjectedDocumentForEvent } from "../types";
+import Link from "next/link";
 
 type EventsProps = {
   result?: Events[];
@@ -66,12 +67,12 @@ export default function Home(props: {
         errorState={props.resultError}
       />
       <NewPlayerPage data={data.main} />
-      <a
+      <Link
         style={{ marginBottom: "100px", textDecoration: "underline" }}
         href="/unsubscribe"
       >
         Unsubscribe
-      </a>
+      </Link>
     </>
   );
 }
