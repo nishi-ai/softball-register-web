@@ -7,6 +7,7 @@ import NewPlayerPage from "../components/NewPlayerPage";
 import data from "../BasicData.json";
 import getDBClient from "../lib/mongodb";
 import { Events, EventsResult, ProjectedDocumentForEvent } from "../types";
+import Link from "next/link";
 
 type EventsProps = {
   result?: Events[];
@@ -54,11 +55,11 @@ export default function Home(props: {
       <Head>
         <title>Cats and Dogs Softball Berlin</title>
         <meta
-          name='Cats and Dogs Softball Berlin'
-          content='A non-competitive fun softball game played once a month during Summer.'
+          name="Cats and Dogs Softball Berlin"
+          content="A non-competitive fun softball game played once a month during Summer."
         />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <DisplayBasicInfo data={data.main} />
       <DisplayEventInfo
@@ -66,6 +67,12 @@ export default function Home(props: {
         errorState={props.resultError}
       />
       <NewPlayerPage data={data.main} />
+      <Link
+        style={{ marginBottom: "100px", textDecoration: "underline" }}
+        href="/unsubscribe"
+      >
+        Unsubscribe
+      </Link>
     </>
   );
 }

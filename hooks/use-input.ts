@@ -42,4 +42,15 @@ const useInput = (validateValue: any) => {
   };
 };
 
+const emailFormat = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
+
+export const isMatched = (value: string, format = emailFormat) => {
+  if (value != "") {
+    const isValidated = value.match(format);
+    if (isValidated != null) {
+      return true;
+    } else return false;
+  } else return false;
+};
+
 export default useInput;
