@@ -12,10 +12,13 @@ export interface Events {
 export interface EventsResult {
   error: string;
 }
-export interface Players {
+export interface Player {
   _id?: ObjectId;
   name: string;
   email: string;
+  unsubscribed?: boolean;
+  created_at?: Date;
+  updated_at?: Date;
 }
 export interface ProjectedDocumentForEvent {
   date: string;
@@ -26,19 +29,13 @@ export interface ProjectedDocumentForPlayer {
   email: string;
 }
 
-export type Player = {
-  name: string;
-  email: string;
-  created_at?: Date;
-};
-
 export type PlayerData = {
   player?: Player;
   message: string;
   playerID: ObjectId;
 };
 
-export interface PlayersList extends Players {
+export interface PlayersList extends Player {
   id: number;
   selected: boolean;
 }

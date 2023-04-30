@@ -54,11 +54,11 @@ export default function Home(props: {
       <Head>
         <title>Cats and Dogs Softball Berlin</title>
         <meta
-          name='Cats and Dogs Softball Berlin'
-          content='A non-competitive fun softball game played once a month during Summer.'
+          name="Cats and Dogs Softball Berlin"
+          content="A non-competitive fun softball game played once a month during Summer."
         />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <DisplayBasicInfo data={data.main} />
       <DisplayEventInfo
@@ -66,6 +66,12 @@ export default function Home(props: {
         errorState={props.resultError}
       />
       <NewPlayerPage data={data.main} />
+      <a
+        style={{ marginBottom: "100px", textDecoration: "underline" }}
+        href="/unsubscribe"
+      >
+        Unsubscribe
+      </a>
     </>
   );
 }

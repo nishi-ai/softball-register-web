@@ -26,7 +26,11 @@ const sendEmail = async (messageBody: MailDataRequired) => {
   }
 };
 
-const getAdminEmailObject = (name: string, email: string, date: string) => {
+const getRegisterAdminEmailObject = (
+  name: string,
+  email: string,
+  date: string
+) => {
   return {
     to: recipientsArray,
     from: sender,
@@ -36,6 +40,24 @@ const getAdminEmailObject = (name: string, email: string, date: string) => {
                 Name: ${name}<br>
                 Email: ${email}<br>
                 Registered at: ${date}
+            `,
+  };
+};
+
+const getUnsubscribeAdminEmailObject = (
+  name: string,
+  email: string,
+  date: string
+) => {
+  return {
+    to: recipientsArray,
+    from: sender,
+    subject: "👋 Unsubscription on your team!",
+    html: `<p>Dear Admin</p>
+                <p>A member has unsubscribed.</p>
+                Name: ${name}<br>
+                Email: ${email}<br>
+                Unsubscribed at: ${date}
             `,
   };
 };
@@ -51,8 +73,21 @@ const getSignedUpEmailObject = (email: string, name: string) => {
   };
 };
 
-const sendAdminEmail = async (name: string, email: string, date: string) => {
-  const messageBody = getAdminEmailObject(name, email, date);
+const sendAdminEmail = async (
+  name: string,
+  email: string,
+  date: string,
+  type: "register" | "unsubscribe"
+) => {
+  let messageBody;
+  switch (type) {
+    case "register":
+      messageBody = getRegisterAdminEmailObject(name, email, date);
+      break;
+    case "unsubscribe":
+      messageBody = getUnsubscribeAdminEmailObject(name, email, date);
+      break;
+  }
   await sendEmail(messageBody);
 };
 

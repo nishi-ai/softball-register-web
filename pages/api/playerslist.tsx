@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import getDBClient from "../../lib/mongodb";
-import { Players, ProjectedDocumentForPlayer } from "../../types";
+import { Player, ProjectedDocumentForPlayer } from "../../types";
 
 export default async function getPlayersList(
   req: NextApiRequest,
@@ -17,10 +17,17 @@ export default async function getPlayersList(
       if (tokenPass === adminPassword) {
         // then good to go to players
         const client = await getDBClient();
-        const db = client.db("softball").collection<Players>("players");
+        const db = client.db("softball").collection<Player>("players");
         const response = await db
           .find<ProjectedDocumentForPlayer>(
-            {},
+            {
+              unsubscribed: {
+                // NULL or false
+                $not: {
+                  $eq: true,
+                },
+              },
+            },
             { projection: { _id: 0, name: 1, email: 1 } }
           )
           .toArray();

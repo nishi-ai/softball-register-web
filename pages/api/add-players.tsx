@@ -41,7 +41,7 @@ export default async function addPlayers(
       created_at: createdDate,
     } as Player);
 
-    await sendAdminEmail(name, email, createdDate.toDateString());
+    await sendAdminEmail(name, email, createdDate.toDateString(), "register");
     await sendSignedUpEmail(email, name);
 
     res.status(200).json({

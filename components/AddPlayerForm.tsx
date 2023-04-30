@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Form.module.css";
-import useInput from "../hooks/use-input";
+import useInput, { isMatched } from "../hooks/use-input";
 import Loader from "./Loader";
 import { Player } from "../types";
 
@@ -22,15 +22,6 @@ function AddPlayerForm(props: {
     reset: resetTouchedNameField,
   } = useInput((value: string) => value.trim() !== "" && value.length >= 2);
 
-  const mailformat = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
-  const isMatched = (value: string) => {
-    if (value != "") {
-      const isValidated = value.match(mailformat);
-      if (isValidated != null) {
-        return true;
-      } else return false;
-    } else return false;
-  };
   const {
     value: enteredEmail,
     isValid: enteredEmailIsValid,
@@ -75,26 +66,26 @@ function AddPlayerForm(props: {
     <div>
       {props.callLoading ? (
         <Loader
-          data-as='span'
-          data-animation='border'
-          data-size='sm'
-          data-role='status'
-          aria-hidden='true'
+          data-as="span"
+          data-animation="border"
+          data-size="sm"
+          data-role="status"
+          aria-hidden="true"
         />
       ) : (
         <form
           noValidate
           onSubmit={submitHandler}
           data-validated={formIsValid.toString()}
-          className='d-flex flex-column'
+          className="d-flex flex-column"
         >
-          <div className='form-group'>
-            <label htmlFor='playername'></label>
+          <div className="form-group">
+            <label htmlFor="playername"></label>
             <input
-              type='name'
+              type="name"
               className={`form-control ${styles.formControl}`}
-              id='name'
-              placeholder='Name'
+              id="name"
+              placeholder="Name"
               onChange={nameChangeHandler}
               onBlur={nameBlurHanlder}
               value={enteredName}
@@ -104,13 +95,13 @@ function AddPlayerForm(props: {
               <p className={styles.errorText}>Please enter at least 2 chars</p>
             )}
           </div>
-          <div className='form-group'>
-            <label htmlFor='email'></label>
+          <div className="form-group">
+            <label htmlFor="email"></label>
             <input
-              type='email'
+              type="email"
               className={`form-control ${styles.formControl}`}
-              id='email'
-              placeholder='email@example.com'
+              id="email"
+              placeholder="email@example.com"
               onChange={emailChangeHandler}
               onBlur={emailBlurHanlder}
               value={enteredEmail}
@@ -126,9 +117,9 @@ function AddPlayerForm(props: {
             )}
           </div>
           <button
-            data-variant='outline-warning'
-            type='submit'
-            className='btn btn-outline-warning mt-4'
+            data-variant="outline-warning"
+            type="submit"
+            className="btn btn-outline-warning mt-4"
             disabled={!formIsValid || props.callLoading}
           >
             <span>Register</span>
