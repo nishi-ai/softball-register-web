@@ -24,7 +24,7 @@ export default async function Unsubscribe(
       validationErrors: errors.array(),
     });
   }
-  const { email } = req.body;
+  const email = (req.body.email as string).toLowerCase();
   let name = "unknown";
 
   try {

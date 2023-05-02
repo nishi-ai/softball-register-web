@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useInput, { isMatched } from "../hooks/use-input";
 import styles from "../components/Form.module.css";
+import Loader from "../components/Loader";
 
 export default function Unsubscribe() {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,38 +40,50 @@ export default function Unsubscribe() {
   };
 
   return (
-    <div style={{ width: "350px" }}>
+    <div style={{ width: "350px", marginTop: "70px" }}>
       {!finished ? (
         <div id="form">
           I unsubscribe from the mailing list for future events.
-          <div className="form-group">
-            <label htmlFor="email"></label>
-            <input
-              type="email"
-              className={`form-control ${styles.formControl}`}
-              id="email"
-              placeholder="email@example.com"
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHanlder}
-              value={enteredEmail}
-              ref={inputEmail}
+          {isLoading ? (
+            <Loader
+              data-as="span"
+              data-animation="border"
+              data-size="sm"
+              data-role="status"
+              aria-hidden="true"
             />
-            {emailInputHasError && (
-              <p className={styles.errorText}>
-                Please enter a valid email with @ and your domain.
-              </p>
-            )}
-          </div>
-          <button
-            style={{ width: "100%" }}
-            data-variant="outline-warning"
-            type="submit"
-            className="btn btn-outline-warning mt-4"
-            disabled={isLoading || !isValid}
-            onClick={handleUnsubscribe}
-          >
-            <span>Unsubscribe</span>
-          </button>
+          ) : (
+            <>
+              <div className="form-group">
+                <label htmlFor="email"></label>
+                <input
+                  type="email"
+                  className={`form-control ${styles.formControl}`}
+                  id="email"
+                  placeholder="email@example.com"
+                  onChange={emailChangeHandler}
+                  onBlur={emailBlurHanlder}
+                  value={enteredEmail}
+                  ref={inputEmail}
+                />
+                {emailInputHasError && (
+                  <p className={styles.errorText}>
+                    Please enter a valid email with @ and your domain.
+                  </p>
+                )}
+              </div>
+              <button
+                style={{ width: "100%" }}
+                data-variant="outline-warning"
+                type="submit"
+                className="btn btn-outline-warning mt-4"
+                disabled={isLoading || !isValid}
+                onClick={handleUnsubscribe}
+              >
+                <span>Unsubscribe</span>
+              </button>
+            </>
+          )}
         </div>
       ) : (
         "Successfully unsubscribed"

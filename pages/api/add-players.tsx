@@ -27,19 +27,19 @@ export default async function addPlayers(
       validationErrors: errors.array(),
     });
   }
-  const name = req.body.name;
-  const email = req.body.email;
+  const name: string = req.body.name;
+  const email = (req.body.email as string).toLowerCase();
   const createdDate = new Date();
   // connect to the database and save the new incoming player
   // the collction will be created dynamically if it does not exist yet.
   try {
     const client = await getDBClient();
-    const db = client.db("softball").collection("players");
+    const db = client.db("softball").collection<Player>("players");
     let result = await db.insertOne({
-      name: name,
-      email: email,
+      name,
+      email,
       created_at: createdDate,
-    } as Player);
+    });
 
     await sendAdminEmail(name, email, createdDate.toDateString(), "register");
     await sendSignedUpEmail(email, name);
